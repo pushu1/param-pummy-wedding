@@ -58,11 +58,112 @@ body.is-locked {
   overflow: hidden;
 }
 
-/* Accessible focus outline */
+/* Accessible focus outline & tap highlights */
 button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
   outline: 2px solid var(--gold-light);
   outline-offset: 3px;
 }
+
+button, .royal-wax-seal, .audio-btn, .btn-cal, .gallery-item {
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+/* ===================================================================
+   MOBILE & VIEWPORT HEIGHT RESPONSIVE SCALING FOR 3D ENVELOPE
+   =================================================================== */
+
+@media (max-width: 380px) {
+  .royal-envelope {
+    transform: scale(0.92);
+    transform-origin: center center;
+  }
+}
+
+@media (max-width: 345px) {
+  .royal-envelope {
+    transform: scale(0.82);
+    transform-origin: center center;
+  }
+}
+
+@media (max-height: 720px) {
+  .cover-container {
+    padding: 10px 14px;
+    justify-content: center;
+    gap: 8px;
+  }
+  .cover-header {
+    margin-top: 6px;
+  }
+  .sacred-ik-onkar {
+    font-size: 32px;
+    margin-bottom: 0;
+  }
+  .cover-wedding-title {
+    font-size: 13px;
+    margin-bottom: 2px;
+  }
+  .cover-couple-names {
+    font-size: 22px;
+  }
+  .royal-envelope {
+    transform: scale(0.86);
+  }
+  .cover-actions {
+    margin-bottom: 4px;
+  }
+}
+
+@media (max-height: 600px) {
+  .royal-envelope {
+    transform: scale(0.74);
+  }
+}
+
+/* ===================================================================
+   CHOREOGRAPHED STAGGERED REVEAL ANIMATIONS (PHASE 5)
+   =================================================================== */
+
+@keyframes royalFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.invitation-main.is-active .arch-crest {
+  animation: royalFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+}
+
+.invitation-main.is-active .hero-blessing-header {
+  animation: royalFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+}
+
+.invitation-main.is-active .gurbani-verse-card {
+  animation: royalFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
+}
+
+.invitation-main.is-active .hero-invitation-announcement {
+  animation: royalFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.65s both;
+}
+
+.invitation-main.is-active .hero-couple-showcase {
+  animation: royalFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.85s both;
+}
+
+.invitation-main.is-active .hero-portrait-frame {
+  animation: royalFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 1.05s both;
+}
+
+.invitation-main.is-active .countdown-container {
+  animation: royalFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 1.25s both;
+}
+
 
 /* ===================================================================
    AMBIENT PARTICLE CANVAS & AUDIO WIDGET
