@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Param & Pummy | Royal Punjabi Wedding Invitation</title>
+  
+  <!-- Open Graph & WhatsApp Sharing Meta Tags -->
+  <meta property="og:title" content="Param & Pummy — Royal Wedding Invitation">
+  <meta property="og:description" content="With the blessings of Waheguru, Mr. Sewa Singh Rodh & Mrs. Gurmeet Kaur Rodh invite you to celebrate the wedding of Paramveer Singh & Manpreet Kaur. 2 December 2026 • Pali, Rajasthan.">
+  <meta property="og:image" content="assets/wedding_couple_0.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pushu1.github.io/param-pummy-wedding/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#4A1734">
+
+  <!-- Preconnect Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&family=Noto+Sans+Gurmukhi:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="is-locked">
+
+  <!-- Canvas for floating gold sparkles and royal flower petals -->
+  <canvas id="ambient-canvas" aria-hidden="true"></canvas>
+
+  <!-- Floating Audio Player Widget -->
+  <aside class="audio-widget" id="audio-widget" aria-label="Wedding Background Music">
+    <button class="audio-btn" id="audio-toggle" aria-label="Toggle background music" title="Toggle AA2 Movie BGM">
+      <div class="disc-vinyl" id="disc-vinyl">
+        <span class="disc-label">ੴ</span>
+      </div>
+      <div class="audio-bars" id="audio-bars">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <span class="audio-tooltip">AA2 Movie BGM</span>
+    </button>
+    <audio id="bgm-player" preload="metadata" loop src="assets/wedding_bgm.mp3"></audio>
+  </aside>
+
+  <!-- ========================================== -->
+  <!-- STEP 2 & 3: OPENING ENVELOPE & CINEMATIC STAGE -->
+  <!-- ========================================== -->
+  <section class="cinematic-stage" id="cover-stage" aria-label="Royal Invitation Cover">
+    <div class="stage-overlay"></div>
+
+    <div class="cover-container">
+      
+      <!-- Skip animation button for quick direct view -->
+      <button class="skip-btn" id="skip-animation-btn" type="button" aria-label="Skip animation and view invitation directly">
+        <span>Direct View ↷</span>
+      </button>
+
+      <!-- Stage Top Header -->
+      <header class="cover-header">
+        <div class="sacred-ik-onkar" aria-label="Ik Onkar">ੴ</div>
+        <p class="sacred-subtitle">With the blessings of Waheguru</p>
+        <div class="gold-divider-small"><span>✧</span></div>
+        <h1 class="cover-wedding-title">Royal Wedding Invitation</h1>
+        <div class="cover-couple-names">
+          <span class="groom-name">Paramveer Singh</span>
+          <span class="couple-amp">&amp;</span>
+          <span class="bride-name">Manpreet Kaur</span>
+        </div>
+        <p class="cover-date-pill">Shubh Vivah • 02 December 2026</p>
+      </header>
+
+      <!-- 3D ROYAL ENVELOPE OBJECT -->
+      <div class="envelope-scene" id="envelope-scene">
+        <div class="royal-envelope" id="royal-envelope">
+          
+          <!-- Back inside plate -->
+          <div class="env-back">
+            <div class="env-interior-pattern"></div>
+          </div>
+
+          <!-- THE ROYAL INVITATION CARD (Inside Pocket) -->
+          <article class="env-card" id="env-card" aria-label="Royal Wedding Card preview">
+            <div class="card-gold-border">
+              <div class="card-inner-frame">
+                <div class="card-crest">ੴ</div>
+                <p class="card-kavita-tiny">ਸਤਿਗੁਰ ਦਾਤੇ ਕਾਜ ਰਚਾਇਆ ॥</p>
+                <h2 class="card-couple-title">Param &amp; Pummy</h2>
+                <p class="card-sub-line">Anand Karaj • 02 Dec 2026</p>
+                <p class="card-venue-tiny">Uday Vatika, Pali</p>
+                <div class="card-shimmer-sweep"></div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Envelope Pocket Sides and Bottom -->
+          <div class="env-pocket-left"></div>
+          <div class="env-pocket-right"></div>
+          <div class="env-pocket-bottom"></div>
+
+          <!-- 3D Top Flap that folds open upwards -->
+          <div class="env-flap-top" id="env-flap-top">
+            <div class="flap-border-trim"></div>
+          </div>
+
+          <!-- Golden Wax Seal on Flap -->
+          <button class="royal-wax-seal" id="royal-seal" type="button" aria-label="Break golden seal and open invitation">
+            <div class="seal-glow-aura"></div>
+            <div class="seal-outer-rim">
+              <span class="seal-concentric-text">✦ SHUBH VIVAH • WAHEGURU ✦</span>
+              <div class="seal-core">
+                <span class="seal-ik-onkar">ੴ</span>
+              </div>
+            </div>
+          </button>
+
+          <!-- Golden light ray emission effect -->
+          <div class="envelope-light-bloom" id="envelope-light-bloom"></div>
+
+        </div>
+      </div>
+
+      <!-- Action Button underneath envelope -->
+      <div class="cover-actions">
+        <button class="btn-royal-open" id="btn-open-invitation" type="button">
+          <span class="btn-text">OPEN YOUR INVITATION</span>
+          <span class="btn-icon">✦</span>
+          <div class="btn-gold-shimmer"></div>
+        </button>
+        <p class="cover-instruction">A little envelope of love &amp; royal blessings, made just for you</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ========================================== -->
+  <!-- STEP 4 & 5: THE COMPLETE WEDDING INVITATION -->
+  <!-- ========================================== -->
+  <main class="invitation-main" id="invitation-main" aria-label="Param and Pummy Wedding Invitation Content">
+
+    <!-- Top Sticky Royal Navigation Bar -->
+    <nav class="royal-navbar" id="royal-navbar" aria-label="Invitation Navigation">
+      <div class="nav-container">
+        <a href="#hero-section" class="nav-brand">Param <span>&amp;</span> Pummy</a>
+        <div class="nav-links">
+          <a href="#events-section" class="nav-link">Celebrations</a>
+          <a href="#family-section" class="nav-link">Family</a>
+          <a href="#gallery-section" class="nav-link">Keepsakes</a>
+          <a href="#venue-section" class="nav-link">Venue</a>
+          <a href="#rsvp-section" class="nav-link nav-btn-highlight">RSVP</a>
+          <a href="#pdf-section" class="nav-link">PDF Card</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="shell-wrapper">
+
+      <!-- ========================================== -->
+      <!-- SECTION A: WEDDING HERO & SACRED INVOCATION -->
+      <!-- ========================================== -->
+      <section class="section-hero" id="hero-section">
+        
+        <!-- Royal Arch Ornament Frame -->
+        <div class="hero-arch-frame">
+          <div class="arch-crest">
+            <span class="arch-ik-onkar">ੴ</span>
+          </div>
+
+          <p class="hero-blessing-header">With the blessings of Waheguru</p>
+          
+          <!-- Sacred Punjabi Gurbani Verse -->
+          <div class="gurbani-verse-card" lang="pa">
+            <div class="verse-filigree-top">❧ ✦ ❧</div>
+            <p class="gurbani-line-1">ਸਤਿਗੁਰ ਦਾਤੇ ਕਾਜ ਰਚਾਇਆ ਆਪਣੀ ਮੇਹਰ ਕਰਾਈ ॥</p>
+            <p class="gurbani-line-2">ਦਾਸਾ ਕਾਰਜ ਆਪ ਸਵਾਰੇ ਇਹੁ ਉਸ ਦੀ ਵਡਿਆਈ ॥</p>
+            <div class="verse-filigree-bottom">❧ ✦ ❧</div>
+            <p class="gurbani-translation">"The True Guru, the Lord Giver, has orchestrated this sacred union through His divine grace. He Himself fulfills the affairs of His humble devotees; this is His sovereign glory."</p>
+          </div>
+
+          <div class="hero-invitation-announcement">
+            <p class="eyebrow-royal">SHUBH VIVAH • 02 DECEMBER 2026</p>
+            <h2 class="hero-host-names">Mr. Sewa Singh Rodh &amp; Mrs. Gurmeet Kaur Rodh</h2>
+            <p class="hero-cordial-message">cordially invite you to the auspicious wedding ceremony of their beloved son</p>
+            
+            <div class="hero-couple-showcase">
+              <h1 class="groom-full-name">Paramveer Singh <span class="nickname">(Param)</span></h1>
+              <div class="couple-connector">
+                <span class="connector-line"></span>
+                <span class="connector-weds">weds</span>
+                <span class="connector-line"></span>
+              </div>
+              <h1 class="bride-full-name">Manpreet Kaur <span class="nickname">(Pummy)</span></h1>
+              <p class="bride-parentage">Daughter of Mr. Ranjeet Singh &amp; Mrs. Rajvinder Kaur</p>
+            </div>
+
+            <p class="hero-family-gratitude">
+              "With the blessings of our elders and the love of our families, we would be deeply honoured by your presence and grace as we begin our new journey together."
+            </p>
+          </div>
+
+          <!-- Featured Couple Portrait Art -->
+          <figure class="hero-portrait-frame">
+            <div class="portrait-matting">
+              <img src="assets/wedding_couple_0.jpg" alt="Royal Punjabi wedding couple in cinematic anime-inspired style - Param and Pummy" class="portrait-img" id="hero-couple-img" loading="eager">
+              <div class="portrait-glow"></div>
+            </div>
+            <figcaption class="portrait-caption">
+              <span>✦ Our Royal Punjabi Wedding Moment ✦</span>
+            </figcaption>
+          </figure>
+
+          <!-- LIVE REAL-TIME COUNTDOWN TIMER -->
+          <div class="countdown-container" id="countdown-container" aria-label="Live Wedding Countdown">
+            <h3 class="countdown-heading">Auspicious Wedding Countdown</h3>
+            <p class="countdown-subheading">Until the Anand Karaj Ceremony • 02 December 2026 • 11:00 AM IST</p>
+            
+            <div class="countdown-grid" id="countdown-grid">
+              <div class="count-card">
+                <div class="count-ring">
+                  <span class="count-val" id="count-days">00</span>
+                </div>
+                <span class="count-tag">Days</span>
+              </div>
+              <div class="count-card">
+                <div class="count-ring">
+                  <span class="count-val" id="count-hours">00</span>
+                </div>
+                <span class="count-tag">Hours</span>
+              </div>
+              <div class="count-card">
+                <div class="count-ring">
+                  <span class="count-val" id="count-minutes">00</span>
+                </div>
+                <span class="count-tag">Minutes</span>
+              </div>
+              <div class="count-card">
+                <div class="count-ring">
+                  <span class="count-val" id="count-seconds">00</span>
+                </div>
+                <span class="count-tag">Seconds</span>
+              </div>
+            </div>
+
+            <div class="countdown-live-banner" id="countdown-live-banner" style="display:none;">
+              🎉 <strong>The Auspicious Wedding Celebrations Have Begun!</strong> Waheguru Ji Ka Khalsa, Waheguru Ji Ki Fateh! 🎉
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+
+      <!-- ========================================== -->
+      <!-- SECTION B: WEDDING CELEBRATIONS TIMELINE -->
+      <!-- ========================================== -->
+      <section class="section-card" id="events-section">
+        <div class="section-badge">Save the Dates</div>
+        <h2 class="section-title">Wedding Celebrations</h2>
+        <p class="section-desc">Join our family across the auspicious ceremonies and joyous functions</p>
+        
+        <div class="timeline-container">
+          
+          <!-- Event 1 -->
+          <article class="event-card">
+            <div class="event-date-col">
+              <span class="event-day-name">SAT</span>
+              <strong class="event-day-num">28</strong>
+              <span class="event-month">NOV</span>
+            </div>
+            <div class="event-details-col">
+              <h3 class="event-title">Akhand Path Sahib Arambh</h3>
+              <p class="event-time">⏰ 9:00 AM</p>
+              <p class="event-venue">📍 At Residence</p>
+              <button class="btn-cal" onclick="addToCalendar('Akhand Path Sahib Arambh', '2026-11-28T09:00:00', '2026-11-28T12:00:00', 'At Residence', 'Akhand Path Sahib Arambh for Param & Pummy Wedding')">
+                📅 Add to Calendar
+              </button>
+            </div>
+          </article>
+
+          <!-- Event 2 -->
+          <article class="event-card">
+            <div class="event-date-col">
+              <span class="event-day-name">MON</span>
+              <strong class="event-day-num">30</strong>
+              <span class="event-month">NOV</span>
+            </div>
+            <div class="event-details-col">
+              <h3 class="event-title">Akhand Path Sahib Samapti &amp; Guru ka Langar</h3>
+              <p class="event-time">⏰ 9:00 AM • Guru Ka Langar at 1:00 PM</p>
+              <p class="event-venue">📍 At Residence</p>
+              <button class="btn-cal" onclick="addToCalendar('Akhand Path Sahib Samapti & Guru ka Langar', '2026-11-30T09:00:00', '2026-11-30T14:30:00', 'At Residence', 'Akhand Path Sahib Samapti & Guru ka Langar for Param & Pummy Wedding')">
+                📅 Add to Calendar
+              </button>
+            </div>
+          </article>
+
+          <!-- Event 3 -->
+          <article class="event-card">
+            <div class="event-date-col">
+              <span class="event-day-name">MON</span>
+              <strong class="event-day-num">30</strong>
+              <span class="event-month">NOV</span>
+            </div>
+            <div class="event-details-col">
+              <h3 class="event-title">Haldi (Tel) Ceremony</h3>
+              <p class="event-time">⏰ 11:00 AM</p>
+              <p class="event-venue">📍 At Residence</p>
+              <button class="btn-cal" onclick="addToCalendar('Haldi (Tel) Ceremony', '2026-11-30T11:00:00', '2026-11-30T13:00:00', 'At Residence', 'Haldi (Tel) Ceremony for Param & Pummy Wedding')">
+                📅 Add to Calendar
+              </button>
+            </div>
+          </article>
+
+          <!-- Event 4 -->
+          <article class="event-card">
+            <div class="event-date-col">
+              <span class="event-day-name">MON</span>
+              <strong class="event-day-num">30</strong>
+              <span class="event-month">NOV</span>
+            </div>
+            <div class="event-details-col">
+              <h3 class="event-title">Mehandi &amp; Ladies Sangeet</h3>
+              <p class="event-time">⏰ 8:00 PM</p>
+              <p class="event-venue">📍 At Residence</p>
+              <button class="btn-cal" onclick="addToCalendar('Mehandi & Ladies Sangeet', '2026-11-30T20:00:00', '2026-11-30T23:30:00', 'At Residence', 'Mehandi & Ladies Sangeet for Param & Pummy Wedding')">
+                📅 Add to Calendar
+              </button>
+            </div>
+          </article>
+
+          <!-- Event 5 -->
+          <article class="event-card">
+            <div class="event-date-col">
+              <span class="event-day-name">TUE</span>
+              <strong class="event-day-num">01</strong>
+              <span class="event-month">DEC</span>
+            </div>
+            <div class="event-details-col">
+              <h3 class="event-title">Bandholi</h3>
+              <p class="event-time">⏰ 6:00 PM</p>
+              <p class="event-venue">📍 At Residence</p>
+              <button class="btn-cal" onclick="addToCalendar('Bandholi', '2026-12-01T18:00:00', '2026-12-01T21:00:00', 'At Residence', 'Bandholi ceremony for Param & Pummy Wedding')">
+                📅 Add to Calendar
+              </button>
+            </div>
+          </article>
+
+          <!-- Event 6 (MAIN WEDDING) -->
+          <article class="event-card highlight-event">
+            <div class="event-date-col gold-col">
+              <span class="event-day-name">WED</span>
+              <strong class="event-day-num">02</strong>
+              <span class="event-month">DEC</span>
+            </div>
+            <div class="event-details-col">
+              <div class="main-event-badge">Auspicious Wedding Union</div>
+              <h3 class="event-title">Anand Karaj (Wedding Ceremony)</h3>
+              <p class="event-time">⏰ 11:00 AM</p>
+              <p class="event-venue">📍 Royal Gurdwara Sahib</p>
+              <button class="btn-cal primary-cal" onclick="addToCalendar('Anand Karaj - Param & Pummy Wedding', '2026-12-02T11:00:00', '2026-12-02T14:00:00', 'Pali, Rajasthan', 'Anand Karaj wedding ceremony of Paramveer Singh & Manpreet Kaur')">
+                📅 Add to Calendar
+              </button>
+            </div>
+          </article>
+
+          <!-- Event 7 (RECEPTION) -->
+          <article class="event-card highlight-event">
+            <div class="event-date-col gold-col">
+              <span class="event-day-name">THU</span>
+              <strong class="event-day-num">03</strong>
+              <span class="event-month">DEC</span>
+            </div>
+            <div class="event-details-col">
+              <div class="main-event-badge">Grand Celebration</div>
+              <h3 class="event-title">Grand Reception</h3>
+              <p class="event-time">⏰ 7:00 PM onwards</p>
+              <p class="event-venue">📍 <strong>Uday Vatika</strong>, Chadar wale Balaji, Pancham Nagar, Pali, Rajasthan</p>
+              <div class="event-buttons">
+                <a href="#venue-section" class="btn-sm-gold">View Venue Map ↗</a>
+                <button class="btn-cal primary-cal" onclick="addToCalendar('Grand Reception - Param & Pummy', '2026-12-03T19:00:00', '2026-12-03T23:59:00', 'Uday Vatika, Chadar wale Balaji, Pancham Nagar, Pali, Rajasthan', 'Grand Wedding Reception for Paramveer Singh & Manpreet Kaur')">
+                  📅 Add to Calendar
+                </button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+
+      <!-- ========================================== -->
+      <!-- SECTION C: FAMILY HERITAGE & BLESSINGS -->
+      <!-- ========================================== -->
+      <section class="section-card" id="family-section">
+        <div class="section-badge">With Love from Our Families</div>
+        <h2 class="section-title">Our Family Heritage</h2>
+        <p class="section-desc">Two loving families united in blessings and sacred joy</p>
+
+        <div class="family-grid">
+          
+          <!-- Groom's Family Card -->
+          <div class="family-card">
+            <div class="family-crest">ੴ</div>
+            <h3 class="family-branch-title">Groom's Family</h3>
+            <p class="family-host-names">Mr. Sewa Singh Rodh &amp; Mrs. Gurmeet Kaur Rodh</p>
+            
+            <div class="family-detail-group">
+              <h4 class="family-role">Grandson of</h4>
+              <p class="family-names">Late Sardar Arjun Singh Rodh<br>and Late Sardani Bachan Kaur Rodh</p>
+            </div>
+
+            <div class="family-detail-group">
+              <h4 class="family-role">Paternal side</h4>
+              <p class="family-names">To all Rodh Family</p>
+            </div>
+
+            <div class="family-detail-group">
+              <h4 class="family-role">Maternal side</h4>
+              <p class="family-names">
+                Late Sardar Khushal Singh Ji Bhati<br>
+                Late Sardani Preetam Kaur Ji Bhati<br>
+                <span class="family-sub">To all Bhati Family</span>
+              </p>
+            </div>
+          </div>
+
+          <!-- Bride's Family Card -->
+          <div class="family-card">
+            <div class="family-crest">✦</div>
+            <h3 class="family-branch-title">Bride's Family</h3>
+            <p class="family-host-names">Mr. Ranjeet Singh &amp; Mrs. Rajvinder Kaur</p>
+            
+            <div class="family-detail-group">
+              <h4 class="family-role">Beloved Daughter</h4>
+              <p class="family-names">Manpreet Kaur (Pummy)</p>
+            </div>
+
+            <div class="family-detail-group">
+              <h4 class="family-role">With Best Compliments &amp; Kids' Request</h4>
+              <div class="kids-compliments-badge">
+                <span class="kid-name">Hanu</span>
+                <span class="kid-bullet">•</span>
+                <span class="kid-name">Laadi</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+
+      <!-- ========================================== -->
+      <!-- SECTION D: PHOTO GALLERY & KEEPSAKES -->
+      <!-- ========================================== -->
+      <section class="section-card" id="gallery-section">
+        <div class="section-badge">A Little Keepsake</div>
+        <h2 class="section-title">Our Wedding Moments</h2>
+        <p class="section-desc">Cinematic, anime-inspired wedding artwork created specially for Param &amp; Pummy</p>
+
+        <div class="gallery-mosaic">
+          
+          <!-- Image 1 -->
+          <figure class="gallery-item" onclick="openLightbox(0)">
+            <img src="assets/wedding_couple_0.jpg" alt="Our Royal Punjabi Wedding - Cinematic anime-inspired portrait" loading="lazy">
+            <div class="gallery-overlay">
+              <span class="gallery-zoom-icon">🔍 Tap to Zoom</span>
+              <span class="gallery-caption-text">Our Royal Punjabi Wedding</span>
+            </div>
+          </figure>
+
+          <!-- Image 2 -->
+          <figure class="gallery-item" onclick="openLightbox(1)">
+            <img src="assets/wedding_couple_1.jpg" alt="Param and Pummy wedding illustration - A special keepsake" loading="lazy">
+            <div class="gallery-overlay">
+              <span class="gallery-zoom-icon">🔍 Tap to Zoom</span>
+              <span class="gallery-caption-text">Our Wedding Keepsake</span>
+            </div>
+          </figure>
+
+        </div>
+
+        <!-- Interactive Guest Photo & Memory Box -->
+        <div class="guest-memory-box">
+          <div class="memory-box-header">
+            <span class="memory-icon">📸</span>
+            <h4>Guest Memories &amp; Blessings</h4>
+          </div>
+          <p class="memory-desc">Have a precious photo or selfie with the couple? Preview your wedding memory here:</p>
+          <div class="upload-control-wrap">
+            <label for="guest-photo-upload" class="upload-btn">
+              <span>Choose Photo to Preview</span>
+              <input type="file" id="guest-photo-upload" accept="image/*" style="display:none;" onchange="previewGuestMemory(this)">
+            </label>
+          </div>
+          <div class="guest-preview-grid" id="guest-preview-grid"></div>
+        </div>
+      </section>
+
+
+      <!-- ========================================== -->
+      <!-- SECTION E: VENUE & GOOGLE MAPS -->
+      <!-- ========================================== -->
+      <section class="section-card" id="venue-section">
+        <div class="section-badge">Grand Reception Location</div>
+        <h2 class="section-title">Wedding Reception Venue</h2>
+        <p class="section-desc">We look forward to welcoming you with warm hearts and royal hospitality</p>
+
+        <div class="venue-card">
+          <div class="venue-icon-header">🏛️</div>
+          <h3 class="venue-name">Uday Vatika</h3>
+          <p class="venue-address">
+            Chadar wale Balaji, Pancham Nagar<br>
+            Pali, Rajasthan
+          </p>
+
+          <div class="venue-interactive-preview">
+            <div class="map-artistic-frame">
+              <div class="map-pin-pulse">
+                <span class="pin-ring"></span>
+                <span class="pin-dot"></span>
+              </div>
+              <div class="map-meta">
+                <strong>Uday Vatika • Reception Hall</strong>
+                <p>Pali, Rajasthan • Tap below for navigation</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="venue-actions">
+            <a href="https://www.google.com/maps/search/?api=1&query=Uday+Vatika+Chadar+wale+Balaji+Pancham+Nagar+Pali+Rajasthan" target="_blank" rel="noopener noreferrer" class="btn-royal-primary">
+              <span class="btn-icon">🗺️</span>
+              <span>OPEN RECEPTION MAP IN GOOGLE MAPS ↗</span>
+            </a>
+            <button class="btn-royal-secondary" type="button" onclick="copyVenueAddress()">
+              📋 Copy Venue Address
+            </button>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ========================================== -->
+      <!-- SECTION F: INTERACTIVE RSVP -->
+      <!-- ========================================== -->
+      <section class="section-card" id="rsvp-section">
+        <div class="section-badge">We Can't Wait to Celebrate</div>
+        <h2 class="section-title">Kindly RSVP</h2>
+        <p class="section-desc">Your presence will double our joy. Please let us know if you will be able to join us!</p>
+
+        <div class="rsvp-card">
+          <form id="wedding-rsvp-form" onsubmit="handleRSVPSubmit(event)">
+            
+            <div class="form-group">
+              <label for="rsvp-name">Full Name <span class="req">*</span></label>
+              <input type="text" id="rsvp-name" name="name" required placeholder="e.g. Jasleen Kaur & Family" autocomplete="name">
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="rsvp-phone">Mobile / WhatsApp Number <span class="req">*</span></label>
+                <input type="tel" id="rsvp-phone" name="phone" required placeholder="e.g. 9829312488" autocomplete="tel">
+              </div>
+
+              <div class="form-group">
+                <label for="rsvp-guests">Number of Guests Attending</label>
+                <select id="rsvp-guests" name="guests">
+                  <option value="1">1 Person</option>
+                  <option value="2" selected>2 Persons</option>
+                  <option value="3">3 Persons</option>
+                  <option value="4">4 Persons</option>
+                  <option value="5+">5+ Family Members</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Attendance Status <span class="req">*</span></label>
+              <div class="radio-status-group">
+                <label class="radio-card">
+                  <input type="radio" name="attending" value="yes" checked>
+                  <span class="radio-custom"></span>
+                  <span class="radio-label">🌸 Joyfully Accept</span>
+                </label>
+                <label class="radio-card">
+                  <input type="radio" name="attending" value="no">
+                  <span class="radio-custom"></span>
+                  <span class="radio-label">✉️ Regretfully Decline</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Which functions will you attend?</label>
+              <div class="checkbox-events-group">
+                <label class="checkbox-item">
+                  <input type="checkbox" name="events" value="Anand Karaj" checked>
+                  <span>Anand Karaj (02 Dec)</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="events" value="Grand Reception" checked>
+                  <span>Grand Reception (03 Dec)</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="events" value="Sangeet & Path">
+                  <span>Pre-Wedding Ceremonies</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="rsvp-message">Warm Wishes or Dietary Note for the Couple</label>
+              <textarea id="rsvp-message" name="message" rows="3" placeholder="Send your heartfelt blessings to Param & Pummy..."></textarea>
+            </div>
+
+            <div class="rsvp-actions">
+              <button type="submit" class="btn-royal-primary full-width" id="rsvp-submit-btn">
+                <span>Confirm RSVP &amp; Send to Family</span>
+                <span class="btn-arrow">💌</span>
+              </button>
+            </div>
+
+            <div id="rsvp-feedback-banner" class="rsvp-feedback" style="display:none;"></div>
+
+          </form>
+        </div>
+      </section>
+
+
+      <!-- ========================================== -->
+      <!-- SECTION G: WHATSAPP SHARING HUB -->
+      <!-- ========================================== -->
+      <section class="section-card" id="share-section">
+        <div class="section-badge">Spread the Joy</div>
+        <h2 class="section-title">Share the Royal Invitation</h2>
+        <p class="section-desc">Share this magical cinematic invitation with family, relatives, and friends</p>
+
+        <div class="share-hub-card">
+          <div class="share-buttons-row">
+            <button class="btn-whatsapp-share" type="button" onclick="shareOnWhatsApp()">
+              <span class="wa-icon">💬</span>
+              <span>SHARE ON WHATSAPP</span>
+            </button>
+            <button class="btn-royal-secondary" type="button" onclick="nativeShare()">
+              <span class="share-icon">📤</span>
+              <span>SHARE VIA OTHER APPS</span>
+            </button>
+            <button class="btn-royal-secondary" type="button" onclick="copyInvitationLink()">
+              <span class="copy-icon">🔗</span>
+              <span>COPY INVITATION LINK</span>
+            </button>
+          </div>
+
+          <div class="enquiry-box">
+            <p class="enquiry-title">For Wedding Enquiries &amp; Information:</p>
+            <div class="contact-numbers">
+              <a href="tel:9829312488" class="contact-pill">📞 9829312488</a>
+              <a href="tel:9079012387" class="contact-pill">📞 9079012387</a>
+            </div>
+            <p class="enquiry-sub">Mr. Sewa Singh Rodh &amp; Family</p>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ========================================== -->
+      <!-- SECTION H: DOWNLOADABLE CLICKABLE PDF & QR -->
+      <!-- ========================================== -->
+      <section class="section-card" id="pdf-section">
+        <div class="section-badge">Shareable Stationery</div>
+        <h2 class="section-title">Clickable PDF &amp; QR Code</h2>
+        <p class="section-desc">Download the royal printable PDF card featuring a real clickable banner and scan code</p>
+
+        <div class="pdf-card-showcase">
+          <div class="pdf-preview-col">
+            <div class="pdf-mockup-frame">
+              <img src="assets/invitation_qr.png" alt="Scan to open Param and Pummy wedding invitation" class="pdf-mockup-qr">
+              <div class="pdf-mockup-badge">Clickable PDF Ready</div>
+            </div>
+          </div>
+          <div class="pdf-info-col">
+            <h3 class="pdf-title">Param &amp; Pummy Royal PDF Invitation</h3>
+            <ul class="pdf-features-list">
+              <li>✨ <strong>Embedded Clickable Banner:</strong> Tap the banner inside any PDF viewer to launch the cinematic website.</li>
+              <li>📱 <strong>High-Resolution QR Code:</strong> Effortlessly scan from print or another smartphone.</li>
+              <li>💌 <strong>Ideal for WhatsApp &amp; Email:</strong> Share with family across the globe.</li>
+            </ul>
+            <div class="pdf-download-actions">
+              <a href="assets/Param_Pummy_Royal_Wedding_Invitation.pdf" download="Param_Pummy_Royal_Wedding_Invitation.pdf" class="btn-royal-primary">
+                <span>📥 DOWNLOAD CLICKABLE PDF (A4)</span>
+              </a>
+              <button class="btn-royal-secondary" onclick="window.print()">
+                🖨️ Print Invitation
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ========================================== -->
+      <!-- SECTION I: ROYAL CLOSING & REPLAY -->
+      <!-- ========================================== -->
+      <footer class="royal-footer" id="footer-section">
+        <div class="footer-crest">ੴ</div>
+        <h3 class="footer-title">With Love &amp; Divine Blessings</h3>
+        <p class="footer-couple-signature">Paramveer Singh (Param) &amp; Manpreet Kaur (Pummy)</p>
+        <p class="footer-hosts">Rodh &amp; Bhati Family Pali, Rajasthan</p>
+        <p class="footer-welcome">"We look forward to celebrating every moment with you."</p>
+
+        <div class="footer-actions">
+          <button class="btn-replay-animation" type="button" onclick="replayCinematicOpening()">
+            ✨ Replay Envelope Opening Experience
+          </button>
+        </div>
+
+        <div class="footer-admin-link">
+          <button class="btn-admin-secret" type="button" onclick="openAdminModal()" title="Host Administration Dashboard">
+            ⚙️ Host Admin &amp; RSVPs
+          </button>
+        </div>
+      </footer>
+
+    </div><!-- /.shell-wrapper -->
+  </main>
+
+
+  <!-- ========================================== -->
+  <!-- LIGHTBOX MODAL FOR GALLERY IMAGES -->
+  <!-- ========================================== -->
+  <div class="lightbox-modal" id="lightbox-modal" role="dialog" aria-modal="true" aria-label="Photo Lightbox" style="display:none;">
+    <button class="lightbox-close" id="lightbox-close-btn" aria-label="Close Lightbox" onclick="closeLightbox()">✕</button>
+    <button class="lightbox-nav-btn prev" id="lightbox-prev" aria-label="Previous image" onclick="prevLightbox()">‹</button>
+    <button class="lightbox-nav-btn next" id="lightbox-next" aria-label="Next image" onclick="nextLightbox()">›</button>
+    <div class="lightbox-content">
+      <img src="" alt="" id="lightbox-img" class="lightbox-img">
+      <p id="lightbox-caption" class="lightbox-caption"></p>
+    </div>
+  </div>
+
+
+  <!-- ========================================== -->
+  <!-- HOST ADMIN & RSVP MANAGER MODAL -->
+  <!-- ========================================== -->
+  <div class="admin-modal" id="admin-modal" role="dialog" aria-modal="true" aria-label="Host Administration" style="display:none;">
+    <div class="admin-card">
+      <div class="admin-header">
+        <h3>Host Administration &amp; RSVP Submissions</h3>
+        <button class="admin-close-btn" onclick="closeAdminModal()">✕</button>
+      </div>
+      <div class="admin-body">
+        <div class="admin-stats">
+          <div class="stat-box">
+            <span class="stat-num" id="stat-total-rsvps">0</span>
+            <span class="stat-label">Total Responses</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num" id="stat-total-guests">0</span>
+            <span class="stat-label">Expected Guests</span>
+          </div>
+        </div>
+
+        <div class="admin-actions-bar">
+          <button class="btn-sm-gold" onclick="exportRSVPstoCSV()">📥 Export RSVPs to CSV</button>
+          <button class="btn-sm-outline" onclick="clearRSVPRecords()">🗑️ Reset List</button>
+        </div>
+
+        <div class="admin-rsvp-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Guests</th>
+                <th>Status</th>
+                <th>Wishes</th>
+              </tr>
+            </thead>
+            <tbody id="admin-rsvp-tbody">
+              <tr>
+                <td colspan="6" style="text-align:center;color:#888;">No RSVPs recorded yet.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="admin-url-config">
+          <label for="admin-public-url">Deployed Public Website URL:</label>
+          <input type="url" id="admin-public-url" value="https://pushu1.github.io/param-pummy-wedding/">
+          <p class="admin-tip">This URL is used for WhatsApp sharing, QR code links, and Clickable PDF generation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-notice" id="toast-notice" role="alert" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
