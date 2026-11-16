@@ -1,5 +1,5 @@
 /**
- * CHIRANJEEV KULDEEP & SOU. KA. TINA
+ * CHIRANJEEV KULDEEP & SOU. KA. TEENA
  * Royal Digital Wedding Invitation Experience
  * Faithfully matching the Reference MP4 Video Experience
  */
@@ -15,7 +15,7 @@
   // Configuration
   const CONFIG = {
     weddingDateISO: '2026-12-11T07:30:00+05:30', // Baraat / Wedding day start
-    publicUrl: localStorage.getItem('kuldeep_tina_public_url') || 'https://pushu1.github.io/param-pummy-wedding/',
+    publicUrl: localStorage.getItem('kuldeep_teena_public_url') || 'https://pushu1.github.io/param-pummy-wedding/',
     mapsUrl: 'https://maps.app.goo.gl/hPi6DXWJZEpUG5Vm9',
     hostPhone1: '9461061236',
     hostPhone2: '9887997822',
@@ -161,7 +161,7 @@
   };
 
   // ===================================================================
-  // 3. AMBIENT PARTICLES CANVAS (GOLD PARTICLES & ROSE PETALS)
+  // 3. AMBIENT PARTICLES CANVAS (GOLD DUST & ROSE PETALS)
   // ===================================================================
   function initAmbientCanvas() {
     const canvas = document.getElementById('ambient-canvas');
@@ -239,165 +239,34 @@
   }
 
   // ===================================================================
-  // 4. INTERACTIVE SCRATCH-TO-REVEAL DATE TILES (VIDEO STYLE)
+  // 4. SCROLL-REVEAL STORYTELLING CONTROLLER
   // ===================================================================
-  function initScratchCards() {
-    const tileWraps = document.querySelectorAll('.scratch-tile-wrap');
+  function initScrollReveal() {
+    const revealElements = document.querySelectorAll('.reveal-on-scroll');
+    if (!revealElements.length) return;
 
-    tileWraps.forEach(wrap => {
-      const canvas = wrap.querySelector('.scratch-canvas');
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d');
-      if (!ctx) return;
-
-      const w = (canvas.width = wrap.offsetWidth || 110);
-      const h = (canvas.height = wrap.offsetHeight || 135);
-
-      // Paint Gold Shimmer Foil onto Canvas
-      const grad = ctx.createLinearGradient(0, 0, w, h);
-      grad.addColorStop(0, '#F9E7B3');
-      grad.addColorStop(0.35, '#E2BE66');
-      grad.addColorStop(0.7, '#C59B27');
-      grad.addColorStop(1, '#9E6D18');
-      ctx.fillStyle = grad;
-      ctx.fillRect(0, 0, w, h);
-
-      // Add subtle gold foil grain
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.45)';
-      for (let i = 0; i < 35; i++) {
-        ctx.beginPath();
-        ctx.arc(Math.random() * w, Math.random() * h, Math.random() * 1.5, 0, Math.PI * 2);
-        ctx.fill();
-      }
-
-      // Decorative text on foil
-      ctx.fillStyle = 'rgba(44, 30, 20, 0.75)';
-      ctx.font = '600 11px Montserrat, sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText('✦ SCRATCH ✦', w / 2, h / 2 + 4);
-
-      let isScratching = false;
-      let scratchedArea = 0;
-      const totalArea = w * h;
-      let isRevealed = false;
-
-      function scratch(x, y) {
-        if (isRevealed) return;
-        ctx.globalCompositeOperation = 'destination-out';
-        ctx.beginPath();
-        ctx.arc(x, y, 20, 0, Math.PI * 2);
-        ctx.fill();
-
-        scratchedArea += Math.PI * 20 * 20 * 0.45;
-        if (scratchedArea > totalArea * 0.3) {
-          revealTile();
-        }
-      }
-
-      function revealTile() {
-        if (isRevealed) return;
-        isRevealed = true;
-        canvas.style.transition = 'opacity 0.6s ease';
-        canvas.style.opacity = '0';
-        setTimeout(() => {
-          canvas.style.display = 'none';
-        }, 600);
-      }
-
-      function getPos(e) {
-        const rect = canvas.getBoundingClientRect();
-        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-        return {
-          x: clientX - rect.left,
-          y: clientY - rect.top,
-        };
-      }
-
-      // Mouse events
-      canvas.addEventListener('mousedown', e => {
-        isScratching = true;
-        const p = getPos(e);
-        scratch(p.x, p.y);
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-revealed');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px'
       });
 
-      window.addEventListener('mouseup', () => {
-        isScratching = false;
-      });
-
-      canvas.addEventListener('mousemove', e => {
-        if (!isScratching) return;
-        const p = getPos(e);
-        scratch(p.x, p.y);
-      });
-
-      // Touch events (Mobile)
-      canvas.addEventListener('touchstart', e => {
-        isScratching = true;
-        const p = getPos(e);
-        scratch(p.x, p.y);
-      }, { passive: true });
-
-      canvas.addEventListener('touchend', () => {
-        isScratching = false;
-      });
-
-      canvas.addEventListener('touchmove', e => {
-        if (!isScratching) return;
-        const p = getPos(e);
-        scratch(p.x, p.y);
-      }, { passive: true });
-
-      // Click / Tap Fallback
-      wrap.addEventListener('click', () => {
-        revealTile();
-      });
-    });
-  }
-
-  // ===================================================================
-  // 5. LIVE REAL-TIME WEDDING COUNTDOWN TIMER
-  // ===================================================================
-  function initCountdown() {
-    const targetDate = new Date(CONFIG.weddingDateISO).getTime();
-    const daysEl = document.getElementById('cd-days');
-    const hoursEl = document.getElementById('cd-hours');
-    const minutesEl = document.getElementById('cd-minutes');
-    const secondsEl = document.getElementById('cd-seconds');
-    const clockEl = document.getElementById('countdown-clock');
-    const bannerEl = document.getElementById('cd-celebration-banner');
-
-    function updateClock() {
-      const now = Date.now();
-      const diff = targetDate - now;
-
-      if (diff <= 0) {
-        if (daysEl) daysEl.textContent = '00';
-        if (hoursEl) hoursEl.textContent = '00';
-        if (minutesEl) minutesEl.textContent = '00';
-        if (secondsEl) secondsEl.textContent = '00';
-        if (clockEl) clockEl.style.display = 'none';
-        if (bannerEl) bannerEl.style.display = 'block';
-        return;
-      }
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-      if (daysEl) daysEl.textContent = String(days).padStart(2, '0');
-      if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
-      if (minutesEl) minutesEl.textContent = String(minutes).padStart(2, '0');
-      if (secondsEl) secondsEl.textContent = String(seconds).padStart(2, '0');
+      revealElements.forEach(el => observer.observe(el));
+    } else {
+      // Fallback for older browsers
+      revealElements.forEach(el => el.classList.add('is-revealed'));
     }
-
-    updateClock();
-    setInterval(updateClock, 1000);
   }
 
   // ===================================================================
-  // 6. ADD TO CALENDAR (.ICS) GENERATOR
+  // 5. ADD TO CALENDAR (.ICS) GENERATOR
   // ===================================================================
   window.addToCalendar = function (title, startLocal, endLocal, location, description) {
     const formatTime = iso => iso.replace(/[-:]/g, '');
@@ -407,7 +276,7 @@
     const icsContent = [
       'BEGIN:VCALENDAR',
       'VERSION:2.0',
-      'PRODID:-//Kuldeep & Tina Wedding//EN',
+      'PRODID:-//Kuldeep & Teena Wedding//EN',
       'CALSCALE:GREGORIAN',
       'METHOD:PUBLISH',
       'BEGIN:VEVENT',
@@ -433,7 +302,7 @@
   };
 
   // ===================================================================
-  // 7. INTERACTIVE RSVP & DIRECT WHATSAPP CONFIRMATION
+  // 6. INTERACTIVE RSVP & DIRECT WHATSAPP CONFIRMATION
   // ===================================================================
   window.handleRSVPSubmit = function (event) {
     event.preventDefault();
@@ -444,7 +313,7 @@
     const attending = form.attending.value === 'yes' ? 'Joyfully Accept with Family' : 'Regretfully Unable to Attend';
     
     const selectedEvents = Array.from(form.querySelectorAll('input[name="events"]:checked'))
-      .map(el => el.value).join(', ') || 'All Functions';
+      .map(el => el.value).join(', ') || 'All Ceremonies';
     const message = form.message.value.trim();
 
     const rsvpRecord = {
@@ -458,9 +327,9 @@
     };
 
     // Store in localStorage
-    const savedRSVPs = JSON.parse(localStorage.getItem('kuldeep_tina_rsvps') || '[]');
+    const savedRSVPs = JSON.parse(localStorage.getItem('kuldeep_teena_rsvps') || '[]');
     savedRSVPs.push(rsvpRecord);
-    localStorage.setItem('kuldeep_tina_rsvps', JSON.stringify(savedRSVPs));
+    localStorage.setItem('kuldeep_teena_rsvps', JSON.stringify(savedRSVPs));
 
     // Feedback banner
     const feedbackBanner = document.getElementById('rsvp-success-banner');
@@ -471,14 +340,14 @@
 
     // Format WhatsApp Message for the host
     const waText = encodeURIComponent(
-      `*Wedding RSVP — Chiranjeev Kuldeep & Sou. Ka. Tina*\n\n` +
+      `*Wedding RSVP — Chiranjeev Kuldeep & Sou. Ka. Teena*\n\n` +
       `👤 *Name:* ${name}\n` +
       `📞 *Phone:* ${phone}\n` +
       `👥 *Family Members:* ${guests}\n` +
       `🌸 *Attendance:* ${attending}\n` +
       `📅 *Ceremonies:* ${selectedEvents}\n` +
       (message ? `💌 *Warm Wishes:* "${message}"\n\n` : '\n') +
-      `Sent via Kuldeep & Tina Royal Wedding Experience.`
+      `Sent via Kuldeep & Teena Royal Wedding Experience.`
     );
 
     // Open WhatsApp after slight pause
@@ -491,13 +360,13 @@
   };
 
   // ===================================================================
-  // 8. WHATSAPP SHARING HUB & UTILITIES
+  // 7. WHATSAPP SHARING HUB & UTILITIES
   // ===================================================================
   window.shareOnWhatsApp = function () {
     const text = encodeURIComponent(
       `॥ श्री गणेशाय नमः ॥\n\n` +
       `By the divine blessings of Lord Shri Vinayakji Maharaj, Smt. Chandra Devi & Shri Jasrajji Upadhyay cordially invite you to celebrate the auspicious wedding of their beloved son:\n\n` +
-      `✨ *Chiranjeev Kuldeep* & *Sou. Ka. Tina* ✨\n\n` +
+      `✨ *Chiranjeev Kuldeep* & *Sou. Ka. Teena* ✨\n\n` +
       `📅 *Wedding Ceremony:* Friday, 11 December 2026\n` +
       `🎉 *Blessing Ceremony & Grand Reception:* Sunday, 13 December 2026 (06:00 PM onwards)\n` +
       `📍 *Reception Venue:* Jain Bagbera Dadawadi, Venkatesh Marg, Pali, Rajasthan\n\n` +
@@ -509,8 +378,8 @@
 
   window.nativeShare = async function () {
     const shareData = {
-      title: 'Kuldeep & Tina — Royal Wedding Invitation',
-      text: '॥ श्री गणेशाय नमः ॥ You are cordially invited to celebrate the auspicious wedding ceremony of Chiranjeev Kuldeep & Sou. Ka. Tina on 11 December 2026 in Pali, Rajasthan.',
+      title: 'Kuldeep & Teena — Royal Wedding Invitation',
+      text: '॥ श्री गणेशाय नमः ॥ You are cordially invited to celebrate the auspicious wedding ceremony of Chiranjeev Kuldeep & Sou. Ka. Teena on 11 December 2026 in Pali, Rajasthan.',
       url: CONFIG.publicUrl
     };
 
@@ -552,7 +421,7 @@
   }
 
   // ===================================================================
-  // 9. HOST ADMINISTRATION & CSV EXPORT
+  // 8. HOST ADMINISTRATION & CSV EXPORT
   // ===================================================================
   window.openAdminModal = function () {
     const modal = document.getElementById('admin-modal');
@@ -567,7 +436,7 @@
   };
 
   function renderAdminRSVPs() {
-    const records = JSON.parse(localStorage.getItem('kuldeep_tina_rsvps') || '[]');
+    const records = JSON.parse(localStorage.getItem('kuldeep_teena_rsvps') || '[]');
     const tbody = document.getElementById('admin-rsvp-table-body');
     const totalEl = document.getElementById('admin-stat-responses');
     const guestsEl = document.getElementById('admin-stat-guests');
@@ -601,7 +470,7 @@
   }
 
   window.exportRSVPsToCSV = function () {
-    const records = JSON.parse(localStorage.getItem('kuldeep_tina_rsvps') || '[]');
+    const records = JSON.parse(localStorage.getItem('kuldeep_teena_rsvps') || '[]');
     if (records.length === 0) {
       alert('No RSVP records to export yet.');
       return;
@@ -622,7 +491,7 @@
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
-    link.download = `Kuldeep_Tina_Wedding_RSVPs_${new Date().toISOString().slice(0, 10)}.csv`;
+    link.download = `Kuldeep_Teena_Wedding_RSVPs_${new Date().toISOString().slice(0, 10)}.csv`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -631,7 +500,7 @@
 
   window.clearRSVPRecords = function () {
     if (confirm('Are you sure you want to clear all stored RSVP records?')) {
-      localStorage.removeItem('kuldeep_tina_rsvps');
+      localStorage.removeItem('kuldeep_teena_rsvps');
       renderAdminRSVPs();
       showToast('RSVP records reset.');
     }
@@ -652,13 +521,13 @@
   if (adminUrlInput) {
     adminUrlInput.addEventListener('change', e => {
       CONFIG.publicUrl = e.target.value.trim();
-      localStorage.setItem('kuldeep_tina_public_url', CONFIG.publicUrl);
+      localStorage.setItem('kuldeep_teena_public_url', CONFIG.publicUrl);
       showToast('Public website URL updated!');
     });
   }
 
   // ===================================================================
-  // 10. INITIALIZATION
+  // 9. INITIALIZATION
   // ===================================================================
   function init() {
     if (waxSealBtn) waxSealBtn.addEventListener('click', startEnvelopeOpening);
@@ -672,8 +541,7 @@
 
     initAudio();
     initAmbientCanvas();
-    initScratchCards();
-    initCountdown();
+    initScrollReveal();
   }
 
   if (document.readyState === 'loading') {
