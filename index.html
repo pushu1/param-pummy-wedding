@@ -44,20 +44,64 @@
   </aside>
 
   <!-- =================================================================== -->
-  <!-- STEP 1: CINEMATIC 3D ENVELOPE OPENING STAGE (EXACT REFERENCE VIDEO) -->
+  <!-- STEP 1: CINEMATIC OPENING SCREEN (MOBILE-FIRST FULL-SCREEN HERO)    -->
   <!-- =================================================================== -->
-  <section class="envelope-stage" id="cover-stage" aria-label="Royal Invitation Envelope">
+  <section class="envelope-stage" id="cover-stage" aria-label="Royal Wedding Invitation Opening Screen">
     <div class="stage-backdrop"></div>
 
     <div class="envelope-viewport">
       
-      <!-- Skip animation option for accessibility -->
-      <button class="skip-animation-btn" id="skip-animation-btn" type="button" aria-label="Skip animation and view invitation directly">
-        <span>Direct View ↷</span>
-      </button>
+      <!-- Top Royal Header -->
+      <header class="opening-royal-header">
+        <div class="opening-sacred-shloka">॥ श्री गणेशाय नमः ॥</div>
+        <h1 class="opening-couple-names">
+          <span class="opening-name">KULDEEP</span>
+          <span class="opening-ampersand">✦</span>
+          <span class="opening-name">TEENA</span>
+        </h1>
+        <p class="opening-invitation-sub">ROYAL WEDDING INVITATION • 11 DECEMBER 2026</p>
+      </header>
 
-      <!-- 3D LUXURY IVORY ENVELOPE (MATCHING REFERENCE VIDEO 1:1) -->
-      <div class="envelope-3d-scene" id="envelope-scene">
+      <!-- Couple Photo Showcase: Groom on Left, Bride on Right -->
+      <div class="opening-couple-showcase" aria-label="Groom Chiranjeev Kuldeep and Bride Sou. Ka. Teena">
+        
+        <!-- Groom Photo (Left) -->
+        <div class="opening-photo-card groom-card">
+          <div class="opening-photo-frame">
+            <img src="assets/groom_photo.jpg" alt="Chiranjeev Kuldeep (Groom)" class="opening-photo-img" loading="eager">
+            <div class="opening-photo-arch-border"></div>
+            <div class="opening-frame-gold-overlay"></div>
+          </div>
+          <div class="opening-photo-meta">
+            <span class="opening-photo-badge">GROOM</span>
+            <span class="opening-photo-name">Kuldeep</span>
+          </div>
+        </div>
+
+        <!-- Center Sacred Union Emblem -->
+        <div class="opening-union-emblem" aria-hidden="true">
+          <span class="opening-emblem-flourish">❦</span>
+          <span class="opening-emblem-text">संग</span>
+          <span class="opening-emblem-star">✦</span>
+        </div>
+
+        <!-- Bride Photo (Right) -->
+        <div class="opening-photo-card bride-card">
+          <div class="opening-photo-frame">
+            <img src="assets/bride_photo.jpg" alt="Sou. Ka. Teena (Bride)" class="opening-photo-img" loading="eager">
+            <div class="opening-photo-arch-border"></div>
+            <div class="opening-frame-gold-overlay"></div>
+          </div>
+          <div class="opening-photo-meta">
+            <span class="opening-photo-badge">BRIDE</span>
+            <span class="opening-photo-name">Teena</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 3D Luxury Royal Envelope Scene -->
+      <div class="envelope-3d-scene" id="envelope-scene" aria-label="Royal Envelope">
         <div class="luxury-envelope" id="luxury-envelope">
           
           <!-- Interior Foil Plate (Shimmering Champagne Gold) -->
@@ -97,11 +141,14 @@
         </div>
       </div>
 
-      <!-- Subtle Invitation Prompt Underneath Envelope -->
-      <div class="envelope-hint-row">
-        <span class="hint-sparkle">✦</span>
-        <span class="hint-text">Tap the wax seal to open your invitation</span>
-        <span class="hint-sparkle">✦</span>
+      <!-- STRICTLY ONLY ONE ACTION BUTTON: CLICK HERE -->
+      <div class="opening-action-wrap">
+        <button class="btn-click-here-hero" id="btn-click-here" type="button" aria-label="Open Wedding Invitation">
+          <span class="btn-star-icon">✦</span>
+          <span class="btn-hero-text">CLICK HERE</span>
+          <span class="btn-star-icon">✦</span>
+          <div class="btn-gold-shimmer"></div>
+        </button>
       </div>
 
     </div>

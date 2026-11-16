@@ -26,6 +26,7 @@
   const coverStage = document.getElementById('cover-stage');
   const invitationMain = document.getElementById('invitation-main');
   const waxSealBtn = document.getElementById('wax-seal-button');
+  const btnClickHere = document.getElementById('btn-click-here');
   const btnSkipAnimation = document.getElementById('skip-animation-btn');
   const bgmPlayer = document.getElementById('bgm-player');
   const audioToggle = document.getElementById('audio-toggle');
@@ -530,13 +531,27 @@
   // 9. INITIALIZATION
   // ===================================================================
   function init() {
-    if (waxSealBtn) waxSealBtn.addEventListener('click', startEnvelopeOpening);
-    if (coverStage) {
-      coverStage.addEventListener('click', e => {
-        if (e.target.closest('#skip-animation-btn')) return;
+    // Only one click option: CLICK HERE button
+    if (btnClickHere) {
+      btnClickHere.addEventListener('click', (e) => {
+        e.stopPropagation();
         startEnvelopeOpening();
       });
     }
+
+    if (waxSealBtn) {
+      waxSealBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        startEnvelopeOpening();
+      });
+    }
+
+    if (coverStage) {
+      coverStage.addEventListener('click', () => {
+        startEnvelopeOpening();
+      });
+    }
+
     if (btnSkipAnimation) btnSkipAnimation.addEventListener('click', finishOpeningSequence);
 
     initAudio();

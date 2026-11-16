@@ -106,6 +106,15 @@ button, .wax-seal-button, .audio-btn, .btn-ceremony-cal {
   bottom: 24px;
   right: 20px;
   z-index: 100;
+  transition: opacity 0.6s ease, transform 0.6s ease, visibility 0.6s ease;
+}
+
+/* Hide audio button completely while opening screen is active (Only CLICK HERE button visible) */
+body.is-locked .audio-widget {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(16px);
 }
 
 .audio-btn {
@@ -195,11 +204,13 @@ button, .wax-seal-button, .audio-btn, .btn-ceremony-cal {
   inset: 0;
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   z-index: 50;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(ellipse at 50% 35%, #FAF7F2 0%, #EFE8DC 55%, #DDD1BF 100%);
+  background: radial-gradient(ellipse at 50% 25%, #420A12 0%, #290409 60%, #150204 100%);
+  overflow: hidden;
   transition: opacity 0.8s ease, visibility 0.8s ease;
 }
 
@@ -212,60 +223,212 @@ button, .wax-seal-button, .audio-btn, .btn-ceremony-cal {
 .stage-backdrop {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 40%, rgba(255, 253, 249, 0.6) 0%, rgba(220, 205, 185, 0.4) 100%);
+  background: radial-gradient(circle at 50% 30%, rgba(212, 175, 55, 0.15) 0%, transparent 65%);
+  pointer-events: none;
 }
 
 .envelope-viewport {
   position: relative;
   width: 100%;
-  max-width: 440px;
+  max-width: 480px;
   height: 100%;
-  max-height: 820px;
+  max-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 10px 14px;
+  box-sizing: border-box;
+  overflow: hidden;
+  perspective: 1400px;
+}
+
+/* ===================================================================
+   OPENING SCREEN: ROYAL HEADER
+   =================================================================== */
+.opening-royal-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  margin-bottom: 2px;
+  flex-shrink: 0;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.opening-sacred-shloka {
+  font-family: 'Noto Serif Devanagari', serif;
+  font-size: 11px;
+  color: #D4AF37;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+}
+
+.opening-couple-names {
+  font-family: 'Cinzel Decorative', 'Cinzel', serif;
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  background: linear-gradient(135deg, #FFF6D6 0%, #D4AF37 50%, #F5DE98 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.opening-ampersand {
+  font-size: 13px;
+  color: #E6C875;
+  -webkit-text-fill-color: #E6C875;
+}
+
+.opening-invitation-sub {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  color: rgba(255, 246, 214, 0.85);
+  margin: 0;
+  text-transform: uppercase;
+}
+
+/* ===================================================================
+   OPENING SCREEN: DUAL PHOTO SHOWCASE (GROOM ON LEFT, BRIDE ON RIGHT)
+   =================================================================== */
+.opening-couple-showcase {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  width: 100%;
+  max-width: 380px;
+  margin: 4px 0;
+  flex-shrink: 0;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.opening-photo-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.opening-photo-frame {
+  position: relative;
+  width: 96px;
+  height: 122px;
+  border-radius: 46px 46px 12px 12px;
+  border: 2px solid #D4AF37;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6), 0 0 14px rgba(212, 175, 55, 0.35);
+  overflow: hidden;
+  background: #1F0307;
+}
+
+.opening-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.opening-photo-arch-border {
+  position: absolute;
+  inset: 2px;
+  border-radius: 44px 44px 10px 10px;
+  border: 1px solid rgba(255, 246, 214, 0.5);
+  pointer-events: none;
+}
+
+.opening-frame-gold-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 65%, rgba(45, 5, 11, 0.6) 100%);
+  pointer-events: none;
+}
+
+.opening-photo-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.opening-photo-badge {
+  display: inline-block;
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #260307;
+  background: linear-gradient(135deg, #FFF4D0 0%, #D4AF37 50%, #B8860B 100%);
+  padding: 2px 10px;
+  border-radius: 999px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.opening-photo-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #FFF6D6;
+  letter-spacing: 0.5px;
+}
+
+.opening-union-emblem {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px;
-  perspective: 1600px;
+  gap: 2px;
+  color: #D4AF37;
+  flex-shrink: 0;
 }
 
-.skip-animation-btn {
-  position: absolute;
-  top: 24px;
-  right: 20px;
-  background: rgba(255, 253, 249, 0.85);
-  border: 1px solid var(--border-gold);
-  border-radius: 999px;
-  padding: 6px 14px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  color: #382415;
-  cursor: pointer;
-  z-index: 80;
-  backdrop-filter: blur(6px);
-  transition: all 0.2s ease;
+.opening-emblem-flourish {
+  font-size: 16px;
+  line-height: 1;
+  color: #E6C875;
 }
 
-.skip-animation-btn:hover {
-  background: var(--gold-metallic);
-  color: #2C1E14;
+.opening-emblem-text {
+  font-family: 'Noto Serif Devanagari', serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #FFF6D6;
+  line-height: 1.2;
 }
 
-/* 3D Envelope Scene */
+.opening-emblem-star {
+  font-size: 10px;
+  line-height: 1;
+  color: #D4AF37;
+}
+
+/* ===================================================================
+   OPENING SCREEN: 3D ENVELOPE SCENE
+   =================================================================== */
 .envelope-3d-scene {
   position: relative;
-  width: 340px;
-  height: 480px;
+  width: min(250px, 66vw);
+  height: min(210px, 29vh);
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
+  margin: 3px 0;
+  cursor: pointer;
 }
 
 @media (max-width: 380px) {
   .envelope-3d-scene {
-    width: 300px;
-    height: 430px;
+    width: 220px;
+    height: 185px;
   }
 }
 
@@ -274,6 +437,8 @@ button, .wax-seal-button, .audio-btn, .btn-ceremony-cal {
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
+  filter: drop-shadow(0 14px 30px rgba(0, 0, 0, 0.45));
+}
   filter: drop-shadow(0 20px 45px rgba(70, 48, 30, 0.28));
 }
 
@@ -368,8 +533,8 @@ button, .wax-seal-button, .audio-btn, .btn-ceremony-cal {
   top: 48%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 96px;
-  height: 96px;
+  width: 74px;
+  height: 74px;
   border: none;
   background: transparent;
   cursor: pointer;
@@ -384,10 +549,10 @@ button, .wax-seal-button, .audio-btn, .btn-ceremony-cal {
 }
 
 .seal-image {
-  width: 90px;
-  height: 90px;
+  width: 68px;
+  height: 68px;
   object-fit: contain;
-  filter: drop-shadow(0 6px 14px rgba(70, 48, 25, 0.35));
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.5));
   transition: filter 0.3s ease;
 }
 
@@ -423,27 +588,86 @@ button, .wax-seal-button, .audio-btn, .btn-ceremony-cal {
   z-index: 25;
 }
 
-.envelope-hint-row {
-  margin-top: 24px;
+/* ===================================================================
+   STRICTLY ONE ACTION BUTTON: CLICK HERE
+   =================================================================== */
+.opening-action-wrap {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 13px;
-  font-weight: 600;
-  color: #5A3F2A;
-  letter-spacing: 0.5px;
-  opacity: 0.9;
-  animation: hintBreathe 2s ease-in-out infinite;
+  justify-content: center;
+  width: 100%;
+  margin-top: 4px;
+  flex-shrink: 0;
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-@keyframes hintBreathe {
-  0%, 100% { opacity: 0.6; }
-  50% { opacity: 1; }
+.btn-click-here-hero {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #FFF4D0 0%, #D4AF37 42%, #AA820A 78%, #F5DE98 100%);
+  color: #240408;
+  font-family: 'Cinzel', serif;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 2.5px;
+  padding: 12px 34px;
+  border-radius: 999px;
+  border: 1.5px solid #FFFDF9;
+  box-shadow: 0 6px 22px rgba(212, 175, 55, 0.45), 0 3px 8px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  animation: heroBtnPulse 2.4s ease-in-out infinite;
 }
 
-.hint-sparkle {
-  color: var(--gold-accent);
+.btn-click-here-hero:hover,
+.btn-click-here-hero:focus {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 8px 30px rgba(212, 175, 55, 0.65), 0 4px 12px rgba(0, 0, 0, 0.6);
+  outline: none;
+}
+
+.btn-click-here-hero:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+@keyframes heroBtnPulse {
+  0%, 100% {
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4), 0 2px 6px rgba(0, 0, 0, 0.4);
+  }
+  50% {
+    box-shadow: 0 8px 30px rgba(212, 175, 55, 0.7), 0 0 16px rgba(255, 244, 208, 0.6);
+  }
+}
+
+.btn-star-icon {
   font-size: 12px;
+  color: #4A0E17;
+  line-height: 1;
+}
+
+.btn-hero-text {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  color: #240408;
+}
+
+.btn-gold-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 30%, rgba(255, 255, 255, 0.65) 50%, transparent 70%);
+  transform: translateX(-100%);
+  animation: btnSweep 3s infinite ease-in-out 1s;
+  pointer-events: none;
+}
+
+@keyframes btnSweep {
+  0% { transform: translateX(-100%); }
+  40%, 100% { transform: translateX(100%); }
 }
 
 /* ===================================================================
@@ -462,6 +686,15 @@ button, .wax-seal-button, .audio-btn, .btn-ceremony-cal {
 
 .envelope-stage.is-unsealing .envelope-light-beam {
   animation: burstLight 0.8s ease forwards;
+}
+
+.envelope-stage.is-unsealing .opening-royal-header,
+.envelope-stage.is-unsealing .opening-couple-showcase,
+.envelope-stage.is-unsealing .opening-action-wrap {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  pointer-events: none;
 }
 
 @keyframes burstLight {
@@ -2049,4 +2282,163 @@ button, .wax-seal-button, .audio-btn, .btn-ceremony-cal {
   opacity: 1;
   visibility: visible;
   transform: translateX(-50%) translateY(0);
+}
+
+
+/* ===================================================================
+   RESPONSIVE DESIGN RULES: OPENING SCREEN (MOBILE, TABLET, DESKTOP)
+   =================================================================== */
+
+/* Desktop & Large Tablets (min-width: 768px and min-height: 720px) */
+@media (min-width: 768px) and (min-height: 720px) {
+  .envelope-viewport {
+    max-width: 540px;
+    padding: 24px 20px;
+  }
+  .opening-royal-header {
+    gap: 5px;
+    margin-bottom: 8px;
+  }
+  .opening-sacred-shloka {
+    font-size: 13px;
+    letter-spacing: 1.5px;
+  }
+  .opening-couple-names {
+    font-size: 24px;
+    letter-spacing: 3px;
+  }
+  .opening-ampersand {
+    font-size: 16px;
+  }
+  .opening-invitation-sub {
+    font-size: 11px;
+    letter-spacing: 2px;
+  }
+  .opening-couple-showcase {
+    gap: 22px;
+    max-width: 440px;
+    margin: 8px 0;
+  }
+  .opening-photo-frame {
+    width: 120px;
+    height: 154px;
+    border-radius: 56px 56px 14px 14px;
+    border-width: 2.5px;
+  }
+  .opening-photo-badge {
+    font-size: 10px;
+    padding: 3px 12px;
+    letter-spacing: 2px;
+  }
+  .opening-photo-name {
+    font-size: 15px;
+  }
+  .opening-union-emblem {
+    gap: 4px;
+  }
+  .opening-emblem-flourish {
+    font-size: 20px;
+  }
+  .opening-emblem-text {
+    font-size: 16px;
+  }
+  .envelope-3d-scene {
+    width: 310px;
+    height: 270px;
+    margin: 8px 0;
+  }
+  .wax-seal-button {
+    width: 86px;
+    height: 86px;
+  }
+  .seal-image {
+    width: 80px;
+    height: 80px;
+  }
+  .btn-click-here-hero {
+    font-size: 16px;
+    letter-spacing: 3px;
+    padding: 14px 44px;
+  }
+}
+
+/* Medium Mobile Devices (375px - 440px wide, 700px - 880px tall e.g. iPhone 13/14/15, Samsung Galaxy) */
+@media (max-width: 440px) and (min-height: 700px) {
+  .envelope-viewport {
+    padding: 14px 16px;
+  }
+  .opening-photo-frame {
+    width: 100px;
+    height: 128px;
+  }
+  .envelope-3d-scene {
+    width: 240px;
+    height: 210px;
+  }
+}
+
+/* Small / Compact Mobile Screens (height <= 680px, e.g. iPhone SE, Galaxy Fold outer screen, landscape) */
+@media (max-height: 680px) {
+  .envelope-viewport {
+    padding: 6px 12px;
+    justify-content: space-evenly;
+  }
+  .opening-royal-header {
+    gap: 2px;
+    margin-bottom: 2px;
+  }
+  .opening-sacred-shloka {
+    display: none;
+  }
+  .opening-couple-names {
+    font-size: 16px;
+    letter-spacing: 1.5px;
+  }
+  .opening-invitation-sub {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+  .opening-couple-showcase {
+    gap: 10px;
+    margin: 2px 0;
+  }
+  .opening-photo-frame {
+    width: 80px;
+    height: 102px;
+    border-radius: 38px 38px 10px 10px;
+  }
+  .opening-photo-badge {
+    font-size: 8px;
+    padding: 1px 8px;
+  }
+  .opening-photo-name {
+    font-size: 11px;
+  }
+  .opening-union-emblem {
+    gap: 1px;
+  }
+  .opening-emblem-flourish {
+    font-size: 14px;
+  }
+  .opening-emblem-text {
+    font-size: 11px;
+  }
+  .envelope-3d-scene {
+    width: 200px;
+    height: 170px;
+    margin: 2px 0;
+  }
+  .wax-seal-button {
+    width: 60px;
+    height: 60px;
+  }
+  .seal-image {
+    width: 54px;
+    height: 54px;
+  }
+  .btn-click-here-hero {
+    font-size: 12px;
+    letter-spacing: 2px;
+    padding: 9px 26px;
+  }
 }
