@@ -1,7 +1,7 @@
 /**
  * CHIRANJEEV KULDEEP & SOU. KA. TINA
  * Royal Digital Wedding Invitation Experience
- * Inspired by Reference Video: 3D Envelope Opening & Interactive Journey
+ * Faithfully matching the Reference MP4 Video Experience
  */
 
 (function () {
@@ -25,7 +25,6 @@
   // DOM Elements
   const coverStage = document.getElementById('cover-stage');
   const invitationMain = document.getElementById('invitation-main');
-  const btnOpenInvite = document.getElementById('btn-open-invitation');
   const waxSealBtn = document.getElementById('wax-seal-button');
   const btnSkipAnimation = document.getElementById('skip-animation-btn');
   const bgmPlayer = document.getElementById('bgm-player');
@@ -58,7 +57,7 @@
 
   function startAudioPlayback() {
     if (!bgmPlayer) return;
-    bgmPlayer.volume = 0.8;
+    bgmPlayer.volume = 0.85;
     const playPromise = bgmPlayer.play();
     if (playPromise !== undefined) {
       playPromise.catch(() => {
@@ -78,13 +77,13 @@
   }
 
   // ===================================================================
-  // 2. CINEMATIC 3D ENVELOPE OPENING ANIMATION (REFERENCE VIDEO STYLE)
+  // 2. CINEMATIC 3D ENVELOPE OPENING ANIMATION (EXACT REFERENCE VIDEO)
   // ===================================================================
   function startEnvelopeOpening() {
     if (isTransitioning || isInvitationOpen) return;
     isTransitioning = true;
 
-    // Start background wedding music
+    // Start background wedding shehnai music
     startAudioPlayback();
 
     // Check accessibility reduced motion
@@ -94,36 +93,35 @@
       return;
     }
 
-    // PHASE 1: Wax Seal Glows & Illuminates (0ms - 800ms)
+    // PHASE 1: Wax Seal Glows & Light Burst (0ms - 800ms)
     coverStage.classList.add('is-unsealing');
 
-    // PHASE 2: Envelope Flap Opens Upward with 3D Perspective (850ms - 2000ms)
+    // PHASE 2: Envelope Flap Opens Upward 180deg (850ms - 2000ms)
     const t1 = setTimeout(() => {
       coverStage.classList.add('is-flapping');
     }, 850);
     animationTimeouts.push(t1);
 
-    // PHASE 3: Wedding Card Slides Out of Pocket & Shimmers (2100ms - 3600ms)
+    // PHASE 3: Wedding Card Slides Out of Pocket (2000ms - 3500ms)
     const t2 = setTimeout(() => {
       coverStage.classList.add('is-card-rising');
-    }, 2100);
+    }, 2000);
     animationTimeouts.push(t2);
 
-    // PHASE 4: Card Blooms Forward & Expands to Viewport (3700ms - 5000ms)
+    // PHASE 4: Card Expands to Fill Viewport (3600ms - 4800ms)
     const t3 = setTimeout(() => {
       coverStage.classList.add('is-card-expanding');
-    }, 3700);
+    }, 3600);
     animationTimeouts.push(t3);
 
-    // PHASE 5: Reveal Main Invitation Website (5000ms)
+    // PHASE 5: Transition to Main Scrollable Invitation (4900ms)
     const t4 = setTimeout(() => {
       finishOpeningSequence();
-    }, 5000);
+    }, 4900);
     animationTimeouts.push(t4);
   }
 
   function finishOpeningSequence() {
-    // Clear any pending timeouts
     animationTimeouts.forEach(t => clearTimeout(t));
     animationTimeouts = [];
 
@@ -143,18 +141,14 @@
     // Unlock page scrolling
     document.body.classList.remove('is-locked');
 
-    // Smooth scroll to hero
+    // Smooth scroll to top of card
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   window.replayEnvelopeOpening = function () {
-    // Scroll to top
     window.scrollTo({ top: 0, behavior: 'instant' });
-
-    // Lock body
     document.body.classList.add('is-locked');
 
-    // Reset envelope classes
     if (coverStage) {
       coverStage.classList.remove('stage-dismissed', 'is-unsealing', 'is-flapping', 'is-card-rising', 'is-card-expanding');
     }
@@ -245,7 +239,124 @@
   }
 
   // ===================================================================
-  // 4. LIVE REAL-TIME WEDDING COUNTDOWN TIMER
+  // 4. INTERACTIVE SCRATCH-TO-REVEAL DATE TILES (VIDEO STYLE)
+  // ===================================================================
+  function initScratchCards() {
+    const tileWraps = document.querySelectorAll('.scratch-tile-wrap');
+
+    tileWraps.forEach(wrap => {
+      const canvas = wrap.querySelector('.scratch-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const w = (canvas.width = wrap.offsetWidth || 110);
+      const h = (canvas.height = wrap.offsetHeight || 135);
+
+      // Paint Gold Shimmer Foil onto Canvas
+      const grad = ctx.createLinearGradient(0, 0, w, h);
+      grad.addColorStop(0, '#F9E7B3');
+      grad.addColorStop(0.35, '#E2BE66');
+      grad.addColorStop(0.7, '#C59B27');
+      grad.addColorStop(1, '#9E6D18');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, w, h);
+
+      // Add subtle gold foil grain
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.45)';
+      for (let i = 0; i < 35; i++) {
+        ctx.beginPath();
+        ctx.arc(Math.random() * w, Math.random() * h, Math.random() * 1.5, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // Decorative text on foil
+      ctx.fillStyle = 'rgba(44, 30, 20, 0.75)';
+      ctx.font = '600 11px Montserrat, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('✦ SCRATCH ✦', w / 2, h / 2 + 4);
+
+      let isScratching = false;
+      let scratchedArea = 0;
+      const totalArea = w * h;
+      let isRevealed = false;
+
+      function scratch(x, y) {
+        if (isRevealed) return;
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.beginPath();
+        ctx.arc(x, y, 20, 0, Math.PI * 2);
+        ctx.fill();
+
+        scratchedArea += Math.PI * 20 * 20 * 0.45;
+        if (scratchedArea > totalArea * 0.3) {
+          revealTile();
+        }
+      }
+
+      function revealTile() {
+        if (isRevealed) return;
+        isRevealed = true;
+        canvas.style.transition = 'opacity 0.6s ease';
+        canvas.style.opacity = '0';
+        setTimeout(() => {
+          canvas.style.display = 'none';
+        }, 600);
+      }
+
+      function getPos(e) {
+        const rect = canvas.getBoundingClientRect();
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        return {
+          x: clientX - rect.left,
+          y: clientY - rect.top,
+        };
+      }
+
+      // Mouse events
+      canvas.addEventListener('mousedown', e => {
+        isScratching = true;
+        const p = getPos(e);
+        scratch(p.x, p.y);
+      });
+
+      window.addEventListener('mouseup', () => {
+        isScratching = false;
+      });
+
+      canvas.addEventListener('mousemove', e => {
+        if (!isScratching) return;
+        const p = getPos(e);
+        scratch(p.x, p.y);
+      });
+
+      // Touch events (Mobile)
+      canvas.addEventListener('touchstart', e => {
+        isScratching = true;
+        const p = getPos(e);
+        scratch(p.x, p.y);
+      }, { passive: true });
+
+      canvas.addEventListener('touchend', () => {
+        isScratching = false;
+      });
+
+      canvas.addEventListener('touchmove', e => {
+        if (!isScratching) return;
+        const p = getPos(e);
+        scratch(p.x, p.y);
+      }, { passive: true });
+
+      // Click / Tap Fallback
+      wrap.addEventListener('click', () => {
+        revealTile();
+      });
+    });
+  }
+
+  // ===================================================================
+  // 5. LIVE REAL-TIME WEDDING COUNTDOWN TIMER
   // ===================================================================
   function initCountdown() {
     const targetDate = new Date(CONFIG.weddingDateISO).getTime();
@@ -286,7 +397,7 @@
   }
 
   // ===================================================================
-  // 5. ADD TO CALENDAR (.ICS) GENERATOR
+  // 6. ADD TO CALENDAR (.ICS) GENERATOR
   // ===================================================================
   window.addToCalendar = function (title, startLocal, endLocal, location, description) {
     const formatTime = iso => iso.replace(/[-:]/g, '');
@@ -322,7 +433,7 @@
   };
 
   // ===================================================================
-  // 6. INTERACTIVE RSVP & DIRECT WHATSAPP CONFIRMATION
+  // 7. INTERACTIVE RSVP & DIRECT WHATSAPP CONFIRMATION
   // ===================================================================
   window.handleRSVPSubmit = function (event) {
     event.preventDefault();
@@ -380,7 +491,7 @@
   };
 
   // ===================================================================
-  // 7. WHATSAPP SHARING HUB & UTILITIES
+  // 8. WHATSAPP SHARING HUB & UTILITIES
   // ===================================================================
   window.shareOnWhatsApp = function () {
     const text = encodeURIComponent(
@@ -430,7 +541,6 @@
     }
   };
 
-  // Toast Notification helper
   function showToast(msg) {
     const toast = document.getElementById('toast-popup');
     if (!toast) return;
@@ -442,7 +552,7 @@
   }
 
   // ===================================================================
-  // 8. HOST ADMINISTRATION & CSV EXPORT
+  // 9. HOST ADMINISTRATION & CSV EXPORT
   // ===================================================================
   window.openAdminModal = function () {
     const modal = document.getElementById('admin-modal');
@@ -538,7 +648,6 @@
     })[m]);
   }
 
-  // Update public URL from admin
   const adminUrlInput = document.getElementById('admin-website-url');
   if (adminUrlInput) {
     adminUrlInput.addEventListener('change', e => {
@@ -549,15 +658,21 @@
   }
 
   // ===================================================================
-  // 9. INITIALIZATION
+  // 10. INITIALIZATION
   // ===================================================================
   function init() {
-    if (btnOpenInvite) btnOpenInvite.addEventListener('click', startEnvelopeOpening);
     if (waxSealBtn) waxSealBtn.addEventListener('click', startEnvelopeOpening);
+    if (coverStage) {
+      coverStage.addEventListener('click', e => {
+        if (e.target.closest('#skip-animation-btn')) return;
+        startEnvelopeOpening();
+      });
+    }
     if (btnSkipAnimation) btnSkipAnimation.addEventListener('click', finishOpeningSequence);
 
     initAudio();
     initAmbientCanvas();
+    initScratchCards();
     initCountdown();
   }
 

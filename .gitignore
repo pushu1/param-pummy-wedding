@@ -4,5 +4,8 @@ ref_script_0.js
 ref_style.css
 extracted_text.txt
 video_frames/
+video_screen_crops/
+/*.jpg
+/*.ttf
 __pycache__/
 *.pyc
