@@ -3,5 +3,6 @@ extract_assets.py
 ref_script_0.js
 ref_style.css
 extracted_text.txt
+video_frames/
 __pycache__/
 *.pyc

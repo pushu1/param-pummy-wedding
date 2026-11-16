@@ -1,72 +1,65 @@
-# Param & Pummy — Premium Cinematic Royal Wedding Invitation Experience 💍✨
+# Chiranjeev Kuldeep & Sou. Ka. Tina — Royal Wedding Invitation Experience 💍✨
 
-> An extraordinary, royal, cinematic Punjabi wedding invitation digital experience created for the wedding celebrations of **Paramveer Singh (Param)** & **Manpreet Kaur (Pummy)**.
+> A luxury, cinematic, mobile-first digital royal wedding invitation experience for **Chiranjeev Kuldeep** & **Sou. Ka. Tina**, inspired by the reference video with a 3D ivory embossed floral envelope, golden `K & T` wax seal, and sacred Vedic traditions.
 
 ---
 
-## 🌟 Live Public Invitation Website
+## 🌟 Live Public Invitation Website & Repositories
+
 - **Live URL:** [https://pushu1.github.io/param-pummy-wedding/](https://pushu1.github.io/param-pummy-wedding/)
-- **Wedding Ceremony (Anand Karaj):** Wednesday, 02 December 2026 at 11:00 AM IST
-- **Grand Reception:** Thursday, 03 December 2026 at 7:00 PM IST
-- **Venue:** Uday Vatika, Chadar wale Balaji, Pancham Nagar, Pali, Rajasthan
+- **Vercel Project Name:** `kuldeep-tina-wedding`
+- **GitHub Repository:** [pushu1/param-pummy-wedding](https://github.com/pushu1/param-pummy-wedding)
+- **Local Project Path:** `C:\Users\Hp\.gemini\antigravity\scratch\param-pummy-wedding`
+- **Preserved Archive:** Previous Param & Pummy invitation remains intact at `/param-pummy/index.html`.
 
 ---
 
 ## 💎 Key Experience Highlights
 
-1. **Clickable PDF Invitation with Real Hyperlink:**
-   - Single-page royal printable PDF invitation (`assets/Param_Pummy_Royal_Wedding_Invitation.pdf`).
-   - Prominent clickable banner reading: `"✨ OPEN YOUR WEDDING INVITATION ✨"`.
-   - Verified PDF link annotation that directly launches the live website when clicked in any PDF reader.
-   - High-resolution embedded QR code for mobile scanning.
+1. **Cinematic 3D Ivory Envelope Opening (Reference Video Style):**
+   - **Luxury Ivory Envelope:** Warm cream and pearl paper tones with realistic 3D embossed floral patterns on the flaps.
+   - **Golden Monogram Wax Seal:** Handcrafted ivory wax seal with an organic wavy rim and lustrous gold `K & T` calligraphy monogram (`assets/kt_wax_seal.png`).
+   - **5-Stage Transformation:**
+     - *Phase 1:* Wax seal illuminates with expanding gold aura and background wedding shehnai starts.
+     - *Phase 2:* Top flap folds backward 180° in true CSS 3D perspective (`rotateX(-180deg)`), revealing shimmering champagne gold foil interior.
+     - *Phase 3:* Radiant golden light beams bloom as the royal invitation card slides out of the pocket with elevation drop-shadows.
+     - *Phase 4:* Card smoothly blooms forward and expands to fill the viewport with drifting golden particles and rose petals.
+     - *Phase 5:* Staggered entrance of sacred Lord Ganesha shlokas, ancestral blessings, couple typography, and animated "Scroll down" cue.
+   - **Controls:** "Direct View ↷" (skip animation), "Replay Envelope Experience" in footer, and `prefers-reduced-motion` accessibility support.
 
-2. **Cinematic 3D Envelope Transformation Sequence:**
-   - **Phase 1 (Golden Wax Seal):** Seal with sacred `ੴ` motif gently glows and radiates light.
-   - **Phase 2 (3D Envelope Opening):** Realistic 3D perspective fold where the top flap opens with light bloom pouring from inside.
-   - **Phase 3 (Card Emergence):** The ivory and gold invitation card rises smoothly from the royal pocket.
-   - **Phase 4 (Cinematic Expansion):** The card expands forward to fill the viewport with golden shimmer and floating rose petals.
-   - **Phase 5 (Staggered Hero Reveal):** Sacred Gurbani verses, couple names, family details, and countdown appear in choreographed order.
-   - **Accessibility & Controls:** Dedicated "Direct View / Skip Animation" option and "Replay Animation" button.
+2. **Clickable PDF Invitation Deliverable (WhatsApp Ready):**
+   - Generated with ReportLab in Python: [`assets/Kuldeep_Tina_Royal_Wedding_Invitation.pdf`](assets/Kuldeep_Tina_Royal_Wedding_Invitation.pdf).
+   - Prominent clickable banner: `"✨ OPEN YOUR WEDDING INVITATION ✨"` with embedded hyperlink to the deployed website.
+   - Verified Google Maps link and scannable QR code embedded directly in the PDF.
+   - Programmatically inspected and verified with `pypdf`.
 
-3. **Complete Wedding Celebrations Timeline & Calendar Sync:**
-   - 28 Nov 2026, 9:00 AM: Akhand Path Sahib Arambh (At Residence)
-   - 30 Nov 2026, 9:00 AM: Akhand Path Sahib Samapti & Guru ka Langar (Langar at 1:00 PM)
-   - 30 Nov 2026, 11:00 AM: Haldi (Tel) Ceremony
-   - 30 Nov 2026, 8:00 PM: Mehandi & Ladies Sangeet (At Residence)
-   - 01 Dec 2026, 6:00 PM: Bandholi (At Residence)
-   - 02 Dec 2026, 11:00 AM: Anand Karaj (Wedding Ceremony)
-   - 03 Dec 2026, 7:00 PM: Grand Reception (Uday Vatika, Pali, Rajasthan)
-   - One-click **"Add to Calendar" (.ics)** for all celebrations.
+3. **Google Maps Integration & Verified QR Code:**
+   - **Exact Venue:** Jain Bagbera Dadawadi, Venkatesh Marg, Pali, Rajasthan, India.
+   - **Exact Google Maps Link:** [https://maps.app.goo.gl/hPi6DXWJZEpUG5Vm9](https://maps.app.goo.gl/hPi6DXWJZEpUG5Vm9)
+   - High-resolution scannable QR Code generated directly from the Maps URL: [`assets/venue_maps_qr.png`](assets/venue_maps_qr.png).
+   - "Scan for Directions" label and 1-click Download QR button.
 
-4. **Preserved Family Heritage & Sacred Invocations:**
-   - Sacred Sikh symbol `ੴ` (Ik Onkar) and Gurbani verse:
-     *ਸਤਿਗੁਰ ਦਾਤੇ ਕਾਜ ਰਚਾਇਆ ਆਪਣੀ ਮੇਹਰ ਕਰਾਈ ॥ ਦਾਸਾ ਕਾਰਜ ਆਪ ਸਵਾਰੇ ਇਹੁ ਉਸ ਦੀ ਵਡਿਆਈ ॥*
-   - Groom's Parents: Mr. Sewa Singh Rodh & Mrs. Gurmeet Kaur Rodh
-   - Bride's Parents: Mr. Ranjeet Singh & Mrs. Rajvinder Kaur
-   - Grandparents & Family: Late Sardar Arjun Singh Rodh, Late Sardani Bachan Kaur Rodh, Late Sardar Khushal Singh Ji Bhati, Late Sardani Preetam Kaur Ji Bhati, Rodh and Bhati families.
-   - Kids' Compliments: Hanu & Laadi.
-   - Contact enquiries: 9829312488 · 9079012387.
+4. **Wedding Celebrations Timeline (With 1-Click "Add to Calendar" `.ics`):**
+   - **05 Dec 2026 (Sat), 07:30 AM:** Dhupawan (Ghritpan) *(At Residence)*
+   - **07 Dec 2026 (Mon), 09:15 AM:** Vinayak Sthapana *(At Residence)*
+   - **10 Dec 2026 (Thu), 10:00 AM:** Mayra Ceremony *(At Residence)*
+   - **10 Dec 2026 (Thu), 04:00 PM:** Jeneu Sanskar *(At Residence)*
+   - **10 Dec 2026 (Thu), 07:00 PM:** Bandoli Celebration *(At Residence)*
+   - **11 Dec 2026 (Fri), 07:30 AM:** Baraat Prasthan *(Departure from Residence)*
+   - **11 Dec 2026 (Fri), Madhyaratri 02:00 AM:** Panigrahan Sanskar (Main Wedding Ceremony)
+   - **13 Dec 2026 (Sun), 06:00 PM onwards:** Blessing Ceremony & Grand Reception (Preetibhoj) at Jain Bagbera Dadawadi
 
-5. **Interactive Photo Gallery & Lightbox:**
-   - Anime-inspired royal keepsakes of Param & Pummy.
-   - Fullscreen lightbox with zoom, next/prev, and mobile touch swipe gestures.
-   - Guest memory upload preview simulation.
+5. **Preserved Family Heritage & Sacred Blessings:**
+   - Lord Shri Vinayakji Maharaj divine grace & Mangala Shloka.
+   - Ancestral blessings: Late Smt. Jamna Devi & Late Shri Harchandji Upadhyay, Late Smt. Pepi Devi & Late Shri Champalalji Upadhyay.
+   - Groom's Parents: Smt. Chandra Devi & Shri Jasrajji Upadhyay.
+   - Bride's Parents & Ancestors: Smt. Manju Devi & Shri Ramgopalji Vajpayee; Late Smt. Janki Devi & Late Shri Chhogalalji Vajpayee.
+   - Hosts (Uttarakanxi): Jasraj Mangilal Upadhyay (255, 256, Ram Nagar, 3rd Gali, Pali, Raj.) • Ph: 9461061236, 9887997822.
+   - Extended family & sons-in-law: Smt. Santosh Devi - Mangilalji Upadhyay, Smt. Hemlata - Gajendra Kumarji Upadhyay, Smt. Aishwarya - Khushwantji Paiswal, Pushpendra, Premprakash, Bhumika.
 
-6. **Reception Venue & Google Maps Navigation:**
-   - One-tap directions to Uday Vatika, Pancham Nagar, Pali, Rajasthan via Google Maps.
-   - Copy venue address helper.
-
-7. **Interactive RSVP & Direct WhatsApp Integration:**
-   - Guests can indicate attendance, guest count, and specific functions.
-   - Sends formatted confirmation directly via WhatsApp to the family phone.
-   - Local storage backup and Host Admin panel with 1-click CSV export.
-
-8. **Royal Audio Player:**
-   - Features the AA2 Movie BGM with floating disc vinyl and soundwave equalizers.
-
----
-
-## 🛠️ Verification & Testing
-- PDF link annotation verified via `pypdf` (`verify_pdf.py`).
-- QR code verified with `qrcode`.
-- Mobile responsive layout tested for portrait, landscape, tablets, and desktop displays.
+6. **Interactive Features:**
+   - Real-time countdown to 11 December 2026.
+   - Interactive golden date tiles (`11` | `December` | `2026`).
+   - Shehnai / wedding BGM player with spinning disc and equalizers.
+   - RSVP form with direct WhatsApp submission to the family.
+   - Host Admin dashboard with CSV export.

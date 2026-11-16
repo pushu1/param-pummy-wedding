@@ -1,38 +1,40 @@
 /**
- * PARAM & PUMMY — ROYAL PUNJABI WEDDING INVITATION
- * Interactive Cinematic Experience Scripts
+ * CHIRANJEEV KULDEEP & SOU. KA. TINA
+ * Royal Digital Wedding Invitation Experience
+ * Inspired by Reference Video: 3D Envelope Opening & Interactive Journey
  */
 
 (function () {
   'use strict';
 
-  // State
+  // State Variables
   let isTransitioning = false;
   let isInvitationOpen = false;
   let animationTimeouts = [];
 
-  // Default Config
+  // Configuration
   const CONFIG = {
-    weddingDateISO: '2026-12-02T11:00:00+05:30',
-    publicUrl: localStorage.getItem('param_pummy_public_url') || 'https://pushu1.github.io/param-pummy-wedding/',
-    hostPhone1: '9829312488',
-    hostPhone2: '9079012387',
-    venueAddress: 'Uday Vatika, Chadar wale Balaji, Pancham Nagar, Pali, Rajasthan',
+    weddingDateISO: '2026-12-11T07:30:00+05:30', // Baraat / Wedding day start
+    publicUrl: localStorage.getItem('kuldeep_tina_public_url') || 'https://pushu1.github.io/param-pummy-wedding/',
+    mapsUrl: 'https://maps.app.goo.gl/hPi6DXWJZEpUG5Vm9',
+    hostPhone1: '9461061236',
+    hostPhone2: '9887997822',
+    venueAddress: 'Jain Bagbera Dadawadi, Venkatesh Marg, Pali, Rajasthan 306401, India',
   };
 
   // DOM Elements
   const coverStage = document.getElementById('cover-stage');
   const invitationMain = document.getElementById('invitation-main');
   const btnOpenInvite = document.getElementById('btn-open-invitation');
-  const royalWaxSeal = document.getElementById('royal-seal');
+  const waxSealBtn = document.getElementById('wax-seal-button');
   const btnSkipAnimation = document.getElementById('skip-animation-btn');
   const bgmPlayer = document.getElementById('bgm-player');
   const audioToggle = document.getElementById('audio-toggle');
-  const discVinyl = document.getElementById('disc-vinyl');
+  const discIcon = document.getElementById('disc-icon');
   const audioBars = document.getElementById('audio-bars');
 
   // ===================================================================
-  // 1. AUDIO PLAYER CONTROLLER
+  // 1. BACKGROUND AUDIO CONTROLLER
   // ===================================================================
   let isAudioPlaying = false;
 
@@ -43,24 +45,24 @@
 
     bgmPlayer.addEventListener('play', () => {
       isAudioPlaying = true;
-      if (discVinyl) discVinyl.classList.add('is-spinning');
+      if (discIcon) discIcon.classList.add('is-spinning');
       if (audioBars) audioBars.classList.add('is-playing');
     });
 
     bgmPlayer.addEventListener('pause', () => {
       isAudioPlaying = false;
-      if (discVinyl) discVinyl.classList.remove('is-spinning');
+      if (discIcon) discIcon.classList.remove('is-spinning');
       if (audioBars) audioBars.classList.remove('is-playing');
     });
   }
 
   function startAudioPlayback() {
     if (!bgmPlayer) return;
-    bgmPlayer.volume = 0.75;
+    bgmPlayer.volume = 0.8;
     const playPromise = bgmPlayer.play();
     if (playPromise !== undefined) {
       playPromise.catch(() => {
-        // Autoplay policy prevented playback until explicit user interaction
+        // Autoplay policy prevented playback until user interaction
         isAudioPlaying = false;
       });
     }
@@ -76,44 +78,44 @@
   }
 
   // ===================================================================
-  // 2. CINEMATIC 3D ENVELOPE OPENING ANIMATION
+  // 2. CINEMATIC 3D ENVELOPE OPENING ANIMATION (REFERENCE VIDEO STYLE)
   // ===================================================================
-  function startCinematicOpening() {
+  function startEnvelopeOpening() {
     if (isTransitioning || isInvitationOpen) return;
     isTransitioning = true;
 
-    // Start background audio
+    // Start background wedding music
     startAudioPlayback();
 
-    // Check reduced motion
+    // Check accessibility reduced motion
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) {
       finishOpeningSequence();
       return;
     }
 
-    // PHASE 1: Wax Seal Glows & Melts (0ms - 800ms)
+    // PHASE 1: Wax Seal Glows & Illuminates (0ms - 800ms)
     coverStage.classList.add('is-unsealing');
 
-    // PHASE 2: Envelope Flap Opens in 3D (800ms - 2000ms)
+    // PHASE 2: Envelope Flap Opens Upward with 3D Perspective (850ms - 2000ms)
     const t1 = setTimeout(() => {
       coverStage.classList.add('is-flapping');
     }, 850);
     animationTimeouts.push(t1);
 
-    // PHASE 3: Card Emerges out of pocket (2000ms - 3600ms)
+    // PHASE 3: Wedding Card Slides Out of Pocket & Shimmers (2100ms - 3600ms)
     const t2 = setTimeout(() => {
       coverStage.classList.add('is-card-rising');
     }, 2100);
     animationTimeouts.push(t2);
 
-    // PHASE 4: Card blooms & expands to viewport (3600ms - 5000ms)
+    // PHASE 4: Card Blooms Forward & Expands to Viewport (3700ms - 5000ms)
     const t3 = setTimeout(() => {
       coverStage.classList.add('is-card-expanding');
     }, 3700);
     animationTimeouts.push(t3);
 
-    // PHASE 5: Reveal Main Invitation (5000ms)
+    // PHASE 5: Reveal Main Invitation Website (5000ms)
     const t4 = setTimeout(() => {
       finishOpeningSequence();
     }, 5000);
@@ -128,33 +130,33 @@
     isTransitioning = false;
     isInvitationOpen = true;
 
-    // Reveal main invitation
+    // Activate main invitation
     if (invitationMain) {
       invitationMain.classList.add('is-active');
     }
 
-    // Hide cover stage
+    // Hide envelope stage
     if (coverStage) {
-      coverStage.classList.add('stage-hidden');
+      coverStage.classList.add('stage-dismissed');
     }
 
-    // Unlock document scrolling
+    // Unlock page scrolling
     document.body.classList.remove('is-locked');
 
     // Smooth scroll to hero
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  window.replayCinematicOpening = function () {
+  window.replayEnvelopeOpening = function () {
     // Scroll to top
     window.scrollTo({ top: 0, behavior: 'instant' });
 
     // Lock body
     document.body.classList.add('is-locked');
 
-    // Reset classes
+    // Reset envelope classes
     if (coverStage) {
-      coverStage.classList.remove('stage-hidden', 'is-unsealing', 'is-flapping', 'is-card-rising', 'is-card-expanding');
+      coverStage.classList.remove('stage-dismissed', 'is-unsealing', 'is-flapping', 'is-card-rising', 'is-card-expanding');
     }
     if (invitationMain) {
       invitationMain.classList.remove('is-active');
@@ -165,7 +167,7 @@
   };
 
   // ===================================================================
-  // 3. AMBIENT PARTICLE SYSTEM (GOLD DUST & ROSE PETALS)
+  // 3. AMBIENT PARTICLES CANVAS (GOLD PARTICLES & ROSE PETALS)
   // ===================================================================
   function initAmbientCanvas() {
     const canvas = document.getElementById('ambient-canvas');
@@ -184,14 +186,13 @@
     const particles = [];
     const maxParticles = window.innerWidth < 600 ? 25 : 45;
 
-    // Particle types: Gold sparkles & Rose Petals
     for (let i = 0; i < maxParticles; i++) {
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
         radius: Math.random() * 2.5 + 1,
-        speedY: Math.random() * 0.9 + 0.4,
-        speedX: Math.random() * 0.6 - 0.3,
+        speedY: Math.random() * 0.8 + 0.35,
+        speedX: Math.random() * 0.5 - 0.25,
         opacity: Math.random() * 0.7 + 0.3,
         type: Math.random() > 0.4 ? 'gold' : 'petal',
         rotation: Math.random() * 360,
@@ -217,20 +218,18 @@
         ctx.rotate((p.rotation * Math.PI) / 180);
 
         if (p.type === 'gold') {
-          // Shimmering gold speck
           ctx.beginPath();
           ctx.arc(0, 0, p.radius, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(243, 217, 159, ${p.opacity})`;
+          ctx.fillStyle = `rgba(212, 175, 55, ${p.opacity})`;
           ctx.shadowBlur = 8;
-          ctx.shadowColor = '#ECC880';
+          ctx.shadowColor = '#D4AF37';
           ctx.fill();
         } else {
-          // Delicate Punjabi wedding rose petal
           ctx.beginPath();
           ctx.ellipse(0, 0, p.radius * 2.2, p.radius * 1.2, 0, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(184, 109, 131, ${p.opacity * 0.8})`;
+          ctx.fillStyle = `rgba(224, 185, 155, ${p.opacity * 0.8})`;
           ctx.shadowBlur = 4;
-          ctx.shadowColor = '#F8E9E8';
+          ctx.shadowColor = '#FAF7F2';
           ctx.fill();
         }
 
@@ -240,25 +239,24 @@
       requestAnimationFrame(renderParticles);
     }
 
-    // Only run if reduced motion is not preferred
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       renderParticles();
     }
   }
 
   // ===================================================================
-  // 4. LIVE REAL-TIME COUNTDOWN
+  // 4. LIVE REAL-TIME WEDDING COUNTDOWN TIMER
   // ===================================================================
   function initCountdown() {
     const targetDate = new Date(CONFIG.weddingDateISO).getTime();
-    const daysEl = document.getElementById('count-days');
-    const hoursEl = document.getElementById('count-hours');
-    const minutesEl = document.getElementById('count-minutes');
-    const secondsEl = document.getElementById('count-seconds');
-    const bannerEl = document.getElementById('countdown-live-banner');
-    const gridEl = document.getElementById('countdown-grid');
+    const daysEl = document.getElementById('cd-days');
+    const hoursEl = document.getElementById('cd-hours');
+    const minutesEl = document.getElementById('cd-minutes');
+    const secondsEl = document.getElementById('cd-seconds');
+    const clockEl = document.getElementById('countdown-clock');
+    const bannerEl = document.getElementById('cd-celebration-banner');
 
-    function update() {
+    function updateClock() {
       const now = Date.now();
       const diff = targetDate - now;
 
@@ -267,7 +265,7 @@
         if (hoursEl) hoursEl.textContent = '00';
         if (minutesEl) minutesEl.textContent = '00';
         if (secondsEl) secondsEl.textContent = '00';
-        if (gridEl) gridEl.style.display = 'none';
+        if (clockEl) clockEl.style.display = 'none';
         if (bannerEl) bannerEl.style.display = 'block';
         return;
       }
@@ -283,15 +281,14 @@
       if (secondsEl) secondsEl.textContent = String(seconds).padStart(2, '0');
     }
 
-    update();
-    setInterval(update, 1000);
+    updateClock();
+    setInterval(updateClock, 1000);
   }
 
   // ===================================================================
   // 5. ADD TO CALENDAR (.ICS) GENERATOR
   // ===================================================================
   window.addToCalendar = function (title, startLocal, endLocal, location, description) {
-    // Format to YYYYMMDDTHHMMSS
     const formatTime = iso => iso.replace(/[-:]/g, '');
     const startTimeStr = formatTime(startLocal);
     const endTimeStr = formatTime(endLocal);
@@ -299,7 +296,7 @@
     const icsContent = [
       'BEGIN:VCALENDAR',
       'VERSION:2.0',
-      'PRODID:-//Param and Pummy Wedding//EN',
+      'PRODID:-//Kuldeep & Tina Wedding//EN',
       'CALSCALE:GREGORIAN',
       'METHOD:PUBLISH',
       'BEGIN:VEVENT',
@@ -321,103 +318,11 @@
     link.click();
     document.body.removeChild(link);
 
-    showToast(`Added "${title}" to Calendar (.ics downloaded)`);
+    showToast(`Added "${title}" to your calendar!`);
   };
 
   // ===================================================================
-  // 6. PHOTO GALLERY LIGHTBOX & GUEST MEMORY PREVIEW
-  // ===================================================================
-  const galleryPhotos = [
-    {
-      src: 'assets/wedding_couple_0.jpg',
-      caption: 'Our Royal Punjabi Wedding — A cinematic, anime-inspired wedding moment created for Param & Pummy.'
-    },
-    {
-      src: 'assets/wedding_couple_1.jpg',
-      caption: 'Our Wedding Moment — A special keepsake for Param & Pummy.'
-    }
-  ];
-  let currentLightboxIndex = 0;
-
-  window.openLightbox = function (index) {
-    currentLightboxIndex = index;
-    updateLightbox();
-    const modal = document.getElementById('lightbox-modal');
-    if (modal) modal.style.display = 'flex';
-  };
-
-  window.closeLightbox = function () {
-    const modal = document.getElementById('lightbox-modal');
-    if (modal) modal.style.display = 'none';
-  };
-
-  window.prevLightbox = function () {
-    currentLightboxIndex = (currentLightboxIndex - 1 + galleryPhotos.length) % galleryPhotos.length;
-    updateLightbox();
-  };
-
-  window.nextLightbox = function () {
-    currentLightboxIndex = (currentLightboxIndex + 1) % galleryPhotos.length;
-    updateLightbox();
-  };
-
-  function updateLightbox() {
-    const imgEl = document.getElementById('lightbox-img');
-    const capEl = document.getElementById('lightbox-caption');
-    if (imgEl && galleryPhotos[currentLightboxIndex]) {
-      imgEl.src = galleryPhotos[currentLightboxIndex].src;
-      imgEl.alt = galleryPhotos[currentLightboxIndex].caption;
-    }
-    if (capEl && galleryPhotos[currentLightboxIndex]) {
-      capEl.textContent = galleryPhotos[currentLightboxIndex].caption;
-    }
-  }
-
-  // Keyboard navigation for Lightbox
-  window.addEventListener('keydown', e => {
-    const modal = document.getElementById('lightbox-modal');
-    if (!modal || modal.style.display === 'none') return;
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowLeft') prevLightbox();
-    if (e.key === 'ArrowRight') nextLightbox();
-  });
-
-  // Mobile swipe support for Lightbox
-  let touchStartX = 0;
-  const lightboxModal = document.getElementById('lightbox-modal');
-  if (lightboxModal) {
-    lightboxModal.addEventListener('touchstart', e => {
-      touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
-
-    lightboxModal.addEventListener('touchend', e => {
-      const touchEndX = e.changedTouches[0].screenX;
-      if (touchStartX - touchEndX > 50) nextLightbox();
-      if (touchEndX - touchStartX > 50) prevLightbox();
-    }, { passive: true });
-  }
-
-  // Guest Memory Upload Preview
-  window.previewGuestMemory = function (input) {
-    if (!input.files || !input.files[0]) return;
-    const file = input.files[0];
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      const grid = document.getElementById('guest-preview-grid');
-      if (grid) {
-        const img = document.createElement('img');
-        img.src = e.target.result;
-        img.className = 'guest-preview-thumb';
-        img.alt = 'Guest wedding memory preview';
-        grid.appendChild(img);
-        showToast('Photo added to preview! Thank you for sharing.');
-      }
-    };
-    reader.readAsDataURL(file);
-  };
-
-  // ===================================================================
-  // 7. INTERACTIVE RSVP & DIRECT WHATSAPP CONFIRMATION
+  // 6. INTERACTIVE RSVP & DIRECT WHATSAPP CONFIRMATION
   // ===================================================================
   window.handleRSVPSubmit = function (event) {
     event.preventDefault();
@@ -425,10 +330,10 @@
     const name = form.name.value.trim();
     const phone = form.phone.value.trim();
     const guests = form.guests.value;
-    const attending = form.attending.value === 'yes' ? 'Joyfully Accept' : 'Regretfully Decline';
+    const attending = form.attending.value === 'yes' ? 'Joyfully Accept with Family' : 'Regretfully Unable to Attend';
     
-    // Checked functions
-    const selectedEvents = Array.from(form.querySelectorAll('input[name="events"]:checked')).map(el => el.value).join(', ') || 'All Functions';
+    const selectedEvents = Array.from(form.querySelectorAll('input[name="events"]:checked'))
+      .map(el => el.value).join(', ') || 'All Functions';
     const message = form.message.value.trim();
 
     const rsvpRecord = {
@@ -442,51 +347,50 @@
     };
 
     // Store in localStorage
-    const savedRSVPs = JSON.parse(localStorage.getItem('param_pummy_rsvps') || '[]');
+    const savedRSVPs = JSON.parse(localStorage.getItem('kuldeep_tina_rsvps') || '[]');
     savedRSVPs.push(rsvpRecord);
-    localStorage.setItem('param_pummy_rsvps', JSON.stringify(savedRSVPs));
+    localStorage.setItem('kuldeep_tina_rsvps', JSON.stringify(savedRSVPs));
 
-    // Show feedback banner
-    const feedbackBanner = document.getElementById('rsvp-feedback-banner');
+    // Feedback banner
+    const feedbackBanner = document.getElementById('rsvp-success-banner');
     if (feedbackBanner) {
-      feedbackBanner.className = 'rsvp-feedback success';
       feedbackBanner.style.display = 'block';
-      feedbackBanner.innerHTML = `<strong>✨ Thank You, ${name}!</strong> Your RSVP has been recorded. Opening WhatsApp to notify the family...`;
+      feedbackBanner.innerHTML = `<strong>✨ Thank You, ${name}!</strong> Your RSVP has been confirmed. Forwarding to the family on WhatsApp...`;
     }
 
-    // Compose formatted WhatsApp notification for the host
+    // Format WhatsApp Message for the host
     const waText = encodeURIComponent(
-      `*Wedding RSVP — Param & Pummy*\n\n` +
+      `*Wedding RSVP — Chiranjeev Kuldeep & Sou. Ka. Tina*\n\n` +
       `👤 *Name:* ${name}\n` +
       `📞 *Phone:* ${phone}\n` +
-      `👥 *Guests:* ${guests}\n` +
-      `🌸 *Status:* ${attending}\n` +
-      `📅 *Functions:* ${selectedEvents}\n` +
-      (message ? `💌 *Wishes:* "${message}"\n\n` : '\n') +
-      `Sent via Param & Pummy Royal Wedding Experience.`
+      `👥 *Family Members:* ${guests}\n` +
+      `🌸 *Attendance:* ${attending}\n` +
+      `📅 *Ceremonies:* ${selectedEvents}\n` +
+      (message ? `💌 *Warm Wishes:* "${message}"\n\n` : '\n') +
+      `Sent via Kuldeep & Tina Royal Wedding Experience.`
     );
 
-    // Open WhatsApp after brief delay
+    // Open WhatsApp after slight pause
     setTimeout(() => {
-      window.open(`https://wa.me/91${CONFIG.hostPhone1}?text=${waText}`, '_blank', 'noopener');
+      window.open(`https://wa.me/91${CONFIG.hostPhone2}?text=${waText}`, '_blank', 'noopener');
     }, 1200);
 
     form.reset();
-    showToast('RSVP saved! WhatsApp opened.');
+    showToast('RSVP confirmed! Opening WhatsApp.');
   };
 
   // ===================================================================
-  // 8. WHATSAPP SHARING HUB & UTILITIES
+  // 7. WHATSAPP SHARING HUB & UTILITIES
   // ===================================================================
   window.shareOnWhatsApp = function () {
     const text = encodeURIComponent(
-      `ੴ With the blessings of Waheguru\n\n` +
-      `Mr. Sewa Singh Rodh & Mrs. Gurmeet Kaur Rodh cordially invite you to celebrate the royal wedding of their son:\n\n` +
-      `✨ *Paramveer Singh (Param)* & *Manpreet Kaur (Pummy)* ✨\n\n` +
-      `📅 *Wedding Ceremony:* 02 December 2026 at 11:00 AM\n` +
-      `🎉 *Grand Reception:* 03 December 2026 at 7:00 PM\n` +
-      `📍 *Venue:* Uday Vatika, Pali, Rajasthan\n\n` +
-      `Experience our cinematic invitation here:\n` +
+      `॥ श्री गणेशाय नमः ॥\n\n` +
+      `By the divine blessings of Lord Shri Vinayakji Maharaj, Smt. Chandra Devi & Shri Jasrajji Upadhyay cordially invite you to celebrate the auspicious wedding of their beloved son:\n\n` +
+      `✨ *Chiranjeev Kuldeep* & *Sou. Ka. Tina* ✨\n\n` +
+      `📅 *Wedding Ceremony:* Friday, 11 December 2026\n` +
+      `🎉 *Blessing Ceremony & Grand Reception:* Sunday, 13 December 2026 (06:00 PM onwards)\n` +
+      `📍 *Reception Venue:* Jain Bagbera Dadawadi, Venkatesh Marg, Pali, Rajasthan\n\n` +
+      `Experience our luxury cinematic wedding invitation here:\n` +
       `${CONFIG.publicUrl}`
     );
     window.open(`https://wa.me/?text=${text}`, '_blank', 'noopener');
@@ -494,17 +398,15 @@
 
   window.nativeShare = async function () {
     const shareData = {
-      title: 'Param & Pummy — Royal Wedding Invitation',
-      text: 'With the blessings of Waheguru, you are cordially invited to celebrate the wedding of Paramveer Singh & Manpreet Kaur on 2 December 2026 in Pali, Rajasthan.',
+      title: 'Kuldeep & Tina — Royal Wedding Invitation',
+      text: '॥ श्री गणेशाय नमः ॥ You are cordially invited to celebrate the auspicious wedding ceremony of Chiranjeev Kuldeep & Sou. Ka. Tina on 11 December 2026 in Pali, Rajasthan.',
       url: CONFIG.publicUrl
     };
 
     if (navigator.share) {
       try {
         await navigator.share(shareData);
-      } catch (err) {
-        // User cancelled or share failed
-      }
+      } catch (err) {}
     } else {
       copyInvitationLink();
     }
@@ -515,8 +417,7 @@
       await navigator.clipboard.writeText(CONFIG.publicUrl);
       showToast('Invitation link copied to clipboard!');
     } catch (err) {
-      // Fallback
-      prompt('Copy this wedding invitation URL:', CONFIG.publicUrl);
+      prompt('Copy invitation link:', CONFIG.publicUrl);
     }
   };
 
@@ -529,9 +430,9 @@
     }
   };
 
-  // Toast Notification
+  // Toast Notification helper
   function showToast(msg) {
-    const toast = document.getElementById('toast-notice');
+    const toast = document.getElementById('toast-popup');
     if (!toast) return;
     toast.textContent = msg;
     toast.classList.add('show');
@@ -541,7 +442,7 @@
   }
 
   // ===================================================================
-  // 9. HOST ADMIN PANEL & CSV EXPORT
+  // 8. HOST ADMINISTRATION & CSV EXPORT
   // ===================================================================
   window.openAdminModal = function () {
     const modal = document.getElementById('admin-modal');
@@ -556,10 +457,10 @@
   };
 
   function renderAdminRSVPs() {
-    const records = JSON.parse(localStorage.getItem('param_pummy_rsvps') || '[]');
-    const tbody = document.getElementById('admin-rsvp-tbody');
-    const totalEl = document.getElementById('stat-total-rsvps');
-    const guestsEl = document.getElementById('stat-total-guests');
+    const records = JSON.parse(localStorage.getItem('kuldeep_tina_rsvps') || '[]');
+    const tbody = document.getElementById('admin-rsvp-table-body');
+    const totalEl = document.getElementById('admin-stat-responses');
+    const guestsEl = document.getElementById('admin-stat-guests');
 
     if (totalEl) totalEl.textContent = records.length;
 
@@ -589,14 +490,14 @@
     `).join('');
   }
 
-  window.exportRSVPstoCSV = function () {
-    const records = JSON.parse(localStorage.getItem('param_pummy_rsvps') || '[]');
+  window.exportRSVPsToCSV = function () {
+    const records = JSON.parse(localStorage.getItem('kuldeep_tina_rsvps') || '[]');
     if (records.length === 0) {
       alert('No RSVP records to export yet.');
       return;
     }
 
-    const headers = ['Timestamp', 'Full Name', 'Phone', 'Guests', 'Status', 'Functions', 'Message'];
+    const headers = ['Timestamp', 'Full Name', 'Phone', 'Guests', 'Status', 'Ceremonies', 'Wishes'];
     const rows = records.map(r => [
       `"${r.timestamp}"`,
       `"${r.name}"`,
@@ -611,7 +512,7 @@
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
-    link.download = `Param_Pummy_Wedding_RSVPs_${new Date().toISOString().slice(0, 10)}.csv`;
+    link.download = `Kuldeep_Tina_Wedding_RSVPs_${new Date().toISOString().slice(0, 10)}.csv`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -620,7 +521,7 @@
 
   window.clearRSVPRecords = function () {
     if (confirm('Are you sure you want to clear all stored RSVP records?')) {
-      localStorage.removeItem('param_pummy_rsvps');
+      localStorage.removeItem('kuldeep_tina_rsvps');
       renderAdminRSVPs();
       showToast('RSVP records reset.');
     }
@@ -637,32 +538,29 @@
     })[m]);
   }
 
-  // Admin URL update
-  const adminUrlInput = document.getElementById('admin-public-url');
+  // Update public URL from admin
+  const adminUrlInput = document.getElementById('admin-website-url');
   if (adminUrlInput) {
     adminUrlInput.addEventListener('change', e => {
       CONFIG.publicUrl = e.target.value.trim();
-      localStorage.setItem('param_pummy_public_url', CONFIG.publicUrl);
-      showToast('Public invitation URL updated!');
+      localStorage.setItem('kuldeep_tina_public_url', CONFIG.publicUrl);
+      showToast('Public website URL updated!');
     });
   }
 
   // ===================================================================
-  // 10. INITIALIZATION
+  // 9. INITIALIZATION
   // ===================================================================
   function init() {
-    // Bind opening triggers
-    if (btnOpenInvite) btnOpenInvite.addEventListener('click', startCinematicOpening);
-    if (royalWaxSeal) royalWaxSeal.addEventListener('click', startCinematicOpening);
+    if (btnOpenInvite) btnOpenInvite.addEventListener('click', startEnvelopeOpening);
+    if (waxSealBtn) waxSealBtn.addEventListener('click', startEnvelopeOpening);
     if (btnSkipAnimation) btnSkipAnimation.addEventListener('click', finishOpeningSequence);
 
-    // Init components
     initAudio();
     initAmbientCanvas();
     initCountdown();
   }
 
-  // Run on DOM ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
